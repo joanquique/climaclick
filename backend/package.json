@@ -2,7 +2,7 @@
   "name": "climaclick",
   "version": "1.0.0",
   "description": "Backend for Climaclick project",
-  "main": "server.js",
+  "main": "backend/server.js",
   "scripts": {
     "start": "node server.js"
   },

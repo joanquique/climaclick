@@ -11,16 +11,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
-// Ejemplo de uso de Axios
-app.get('/data', async (req, res) => {
-  try {
-    const response = await axios.get('https://api.example.com/data');
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).send('Error fetching data');
-  }
-});
-
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

@@ -1,12 +1,10 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = process.env.PORT || 3000; // Usa el puerto definido en la variable de entorno o el 3000 por defecto
-
-const axios = require('axios');
+const port = 3000;
 
 // Servir archivos estáticos desde la raíz
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, '..')));
 
 // Ruta principal para servir el archivo HTML principal
 app.get('/', (req, res) => {

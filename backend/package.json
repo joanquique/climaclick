@@ -1,23 +1,21 @@
 {
-  "name": "morl",
+  "name": "climaclick",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend for Climaclick project",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js",
-    "deploy": "gh-pages -d public",
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "Joan Alvarez",
-  "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
+    "axios": "^0.21.1"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0",
     "axios": "^1.7.2",
     "express": "^4.19.2"
   },
-  "devDependencies": {
-    "gh-pages": "^4.0.0",
-    "nodemon": "^3.1.4"
-  }
+  "author": "Joan Alvarez",
+  "license": "ISC"
 }

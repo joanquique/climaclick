@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname)));
 
 // Ruta principal para servir el archivo HTML principal
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 // Ejemplo de uso de Axios

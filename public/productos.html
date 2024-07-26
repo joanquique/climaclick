@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explora la amplia variedad de productos de aire acondicionado en Climaclick. Desde minisplits hasta aires acondicionados portátiles, tenemos todo lo que necesitas para mantener tu espacio fresco y confortable. Compra ahora y disfruta de precios competitivos y envío rápido.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/CARRITO_AZUL_PNG-02.png" type="image/png">
+    <title>Productos</title>
+    <script src="js/functions.js" defer></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header> <!-- Barra de navegación -->
+        <nav class="busqueda-boton">
+            <ul>
+                <li>
+                    <form>
+                        <input type="text" name="q" placeholder="Filtrar productos...">
+                    </form>
+                </li>
+                <li>
+                    <button class="login" id="loginButton" style="display: none;">Iniciar sesión</button>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <div class="menu__icon-container">
+                <i class="header__icon" id="menu-toggle">
+                    <img id="menu-icon" src="img/menu.svg" alt="Icono Menu" width="30">
+                </i>
+            </div>
+            <ul class="panel-nav">
+                <li class="logo-nav">
+                    <a href="index.html" class="logo-link">
+                        <img class="logo-morl" id="logo" src="img/CLIMACLICK_AZUL.png" alt="logo climaclick">
+                    </a>
+                </li>
+                <li class="boton-nav"><a href="minisplit.html">Minisplit</a></li>
+                <li class="boton-nav"><a href="inverter.html">Inverter</a></li>
+                <li class="boton-nav"><a href="portatil.html">Portátil</a></li>
+                <li class="boton-nav"><a href="vrf.html">VRF</a></li>
+                <li class="boton-nav"><a href="gas_herramientas.html">Gas y Herramientas</a></li>
+            </ul>  
+            <div class="cart__icon-container">
+                <i class="header__icon" id="cart-toggle">
+                    <img id="cart-icon" src="img/shopping-cart.svg" width="30" alt="ícono carrito">
+                </i>
+            </div>      
+        </nav>
+    </header>
+    <div class="modal" id="modal"> <!-- Modal -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="text-sign-in">Inicio de sesión</p>
+            <form id="loginForm">
+                <!-- Campos de login -->
+                <input type="email" id="email" placeholder="Correo electrónico">
+                <input type="password" id="password" placeholder="Contraseña">
+                <div class="checkbox">
+                    <input type="checkbox">  Mantener sesión iniciada
+                </div>
+                <button type="submit" class="submit">Iniciar sesión</button>
+            </form>
+            <p class="text-sign-up">¿No tienes una cuenta? <a href="sign-up.html" id="registerLink">Regístrate aquí</a></p>
+            <small>&copy; 2024 Climaclick</small>
+        </div>
+    </div>
+    <main>
+        <section class="items">
+            <article class="item"> <!-- AC122CK -->
+                <a href="ac122ck.html">
+                    <img class="img-item" src="img/HISENSE-CLASSIC.webp" alt="imagen Minisplit">
+                    <h2><span class="text-archivo-black">Minisplit Hisense AC122CK </span><span class="text-montserrat"> Sólo Frío 12000 BTU</span></h2>
+                </a>
+                <span class="precio">$6,100.00</span>
+                <a class="btn-link" href="ac122ck.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- AT122CK -->
+                <a href="at122ck.html">
+                    <img class="img-item" src="img/Inverter-Hisense-At122ck.webp" alt="Minisplit">
+                    <h2><span class="text-archivo-black">Minisplit Hisense AT122CK </span> <span class="text-montserrat">Inverter 12000 BTU Sólo Frío</span></h2>
+                </a>
+                <span class="precio">$7,999.00</span>
+                <a class="btn-link" href="at122ck.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- AC182CF -->
+                <a href="ac182cf.html">
+                    <img class="img-item" src="img/Minisplit-Hisense---Ac182cf.webp" alt="Minisplit">
+                    <h2><span class="text-archivo-black">Minisplit Hisense AC182CF </span><span class="text-montserrat"> 1.5 Ton 18000 BTU Sólo Frío</span></h2>
+                </a>
+                <span class="precio">$9,800.00</span>
+                <a class="btn-link" href="ac182cf.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- AC242CF -->
+                <a href="ac242cf.html">
+                    <img class="img-item" src="img/Hisense-Ac242cf.webp" alt="Minisplit">
+                    <h2><span class="text-archivo-black">Minisplit Hisense AC242CF </span><br><span class="text-montserrat">2 Ton Inverter Sólo Frío 24000 BTU</span></h2>
+                </a>
+                <span class="precio">$13,100.00</span>
+                <a class="btn-link" href="ac242cf.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- AT242CBW01 -->
+                <a href="at242cbw01.html">
+                    <img class="img-item" src="img/Hisense-Inverter-At242cbw01.webp" alt="hisense at242cbw01">
+                    <h2><span class="text-archivo-black">Minisplit Hisense AT242CBW01</span><br><span class="text-montserrat">2 Ton Inverter Sólo Frío 220 V 24000 BTU</span></h2>
+                </a>
+                <span class="precio">$15,600.00</span>
+                <a class="btn-link" href="at242cbw01.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- AU362VQ -->
+                <a href="au362vq.html">
+                    <img class="img-item" src="img/Hisense-inverter-frío-calor.webp" alt="hisense au362vq">
+                    <h2><span class="text-archivo-black">Minisplit Hisense AU362VQ </span><span class="text-montserrat">3 Ton Inverter Frío/Calor 220 V 36000 BTU</span></h2>
+                </a>
+                <span class="precio">$30,500.00</span>
+                <a class="btn-link" href="au362vq.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- AT182CBW01 -->
+                <a href="at182cbw01.html">
+                    <img class="img-item" src="img/Hisense-Wifi-Inverter-858132006120.webp" alt="hisense at182cbw01">
+                    <h2><span class="text-archivo-black">Minisplit Hisense AT182CBW01</span><br><span class="text-montserrat">1.5 Ton Inverter 18000 BTU Sólo Frío 220 V</span></h2>
+                </a>
+                <span class="precio">$11,725.00</span>
+                <a class="btn-link" href="at182cbw01.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- Nova -->
+                <a href="nova.html">
+                    <img class="img-item" src="img/DUVENTUS-CLASICO.webp" alt="Duventus Nova">
+                    <h2><span class="text-archivo-black">Minisplit Duventus</span><br><span class="text-montserrat">Sólo Frío 1 Ton 12000 BTU</span></h2>
+                </a>
+                <span class="precio">$6,100.00</span>
+                <a class="btn-link" href="nova.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- Nova Inverter -->
+                <a href="nova_inverter.html">
+                    <img class="img-item" src="img/DUVENTUS-INVERTER.webp" alt="Duventus Inverter">
+                    <h2><span class="text-archivo-black">Minisplit Duventus Inverter</span><br><span class="text-montserrat">1 Ton 12000 BTU Sólo Frío 110 V</span></h2>
+                </a>
+                <span class="precio">$7,999.00</span>
+                <a class="btn-link" href="nova_inverter.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- Hisense Portátil -->
+                <a href="hisense_portatil.html">
+                    <img class="img-item" src="img/portatil-400x400.webp" alt="Hisense Portátil">
+                    <h2><span class="text-archivo-black">Aire Acondicionado Portátil Hisense</span><br><span class="text-montserrat">1 Ton 110 V</span></h2>
+                </a>
+                <span class="precio">$7,999.00</span>
+                <a class="btn-link" href="hisense_portatil.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- 410A -->
+                <a href="G410a.html">
+                    <img class="img-item" src="img/Genetron-Az20.webp" alt="genetron 410">
+                    <h2>Gas Refrigerante Genetron 410A</h2> 
+                </a>
+                <span class="precio">$2,150.00</span>
+                <a class="btn-link" href="G410a.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- 407 -->
+                <a href="G407.html">
+                    <img class="img-item" src="img/Genetron-407.webp" alt="VRF">
+                    <h2>Gas Refrigerante Genetron 407</h2>
+                </a>
+                <span class="precio">$2,710.00</span>
+                <a class="btn-link" href="G407.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- R22 -->
+                <a href="GR22.html">
+                    <img class="img-item" src="img/Genetron-r22.webp" alt="Genetron 407">
+                    <h2>Gas Refrigerante Genetron R22</h2>
+                </a>
+                <span class="precio">$4,230.00</span>
+                <a class="btn-link" href="GR22.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- Pelacables Stripmaster -->
+                <a href="pinza_stripmaster.html">
+                    <img class="img-item" src="img/Pinza-Pelacables-Stripmaster.webp" alt="Pinza Stripmaster">
+                    <h2><span class="text-archivo-black">Pinza Pelacables Stripmaster</span>&copy;<br><span class="text-montserrat">10-22 Awg 45-292</span></h2>
+                </a>
+                <span class="precio">$350.00</span>
+                <a class="btn-link" href="pinza_stripmaster.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- Ponchadora DMC -->
+                <a href="ponchadora.html">
+                    <img class="img-item" src="img/Pinza-Ponchadora-Crimpadora.webp" alt="Pinza Ponchadora">
+                    <h2><span class="text-archivo-black">Pinza Ponchadora Crimpadora DMC</span><br><span class="text-montserrat">Crimping Tool</span></h2>
+                </a>
+                <span class="precio">$298.99</span>
+                <a class="btn-link" href="ponchadora.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- Alicates -->
+                <a href="alicates.html">
+                    <img class="img-item" src="img/alicates-punta-plana.webp" alt="Alicates">
+                    <h2><span class="text-archivo-black">Alicates MAUN England</span><br><span class="text-montserrat">Pinza Punta Plana Acción Paralela</span></h2>
+                </a>
+                <span class="precio">$350.00</span>
+                <a class="btn-link" href="alicates.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+            <article class="item"> <!-- VRF mv5-x400 -->
+                <a href="mv5-x400.html">
+                    <img class="img-item" src="img-items/INTENSITY-V5X.webp" alt="Sistema VRF">
+                    <h2><span class="text-archivo-black">Sistema de Aire Acondicionado VRF</span><br><span class="text-montserrat">mv5-x400</span></h2>
+                </a>
+                <span class="precio">$97,500.00</span>
+                <a class="btn-link" href="mv5-x400.html"><button class="boton-info">Ver producto</button></a>
+                <button class="add-to-cart">Agregar al carrito</button>
+            </article>
+        </section>
+        <section class="cart cart--container"> <!-- Carrito de compras-->
+            <h2 class="cart__title">CARRITO</h2>
+            <hr>
+            <i id="cart-close"><img src="img/x.svg" class="cart__close-icon" alt="ícono cerrar carrito" width="25"></i> 
+            <div class="cart__item-count-container">
+                <span id="cart-item-count" class="cart__item-count"></span>
+                <span class="cart__item-text">Artículos</span>
+            </div>
+            <div class="cart__total-container">
+                <b><span class="cart__item-text">Total a pagar: $</span><span id="cart-total" class="cart__total"></span></b>
+            </div>
+            <a href="informacion_compra.html" aria-label="Proceder a informacion de compra">
+                <button class="boton-comprar" id="buy-button" style="display: none;">Comprar</button>
+            </a>
+            <div class="cart__item"></div>
+        </section>
+        <section class="menu menu--container"> <!-- Menú a la izquierda (móvil)-->
+            <h2 class="menu__title">MENU</h2>
+            <i id="menu-close"><img src="img/x.svg" class="menu__close-icon" alt="ícono cerrar menú" width="25"></i> 
+            <ul class="no-bullets">
+                <li class="menu-item"><a href="minisplit.html">Minisplit</a></li>
+                <li class="menu-item"><a href="inverter.html">Inverter</a></li>
+                <li class="menu-item"><a href="portatil.html">Portátil</a></li>
+                <li class="menu-item"><a href="vrf.html">VRF</a></li>
+                <li class="menu-item"><a href="gas_herramientas.html">Gas y Herramientas</a></li>
+            </ul>
+        </section>
+        <!-- Contenedor para la notificación -->
+        <div id="notification" class="notification hidden">Artículo agregado al carrito</div>
+    </main>
+    <hr>
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html"><img src="img/CLIMACLICK_AZUL.png" alt="Logo Climaclick"></a>
+        </div>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Categorías</h3>
+                <ul>
+                    <li><a href="minisplit.html">Minisplit</a></li>
+                    <li><a href="inverter.html">Inverter</a></li>
+                    <li><a href="portatil.html">Portátil</a></li>
+                    <li><a href="vrf.html">VRF</a></li>
+                    <li><a href="gas_herramientas.html">Gas y Herramientas</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="politicas.html">Políticas</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <p class="address">Schumann 202 Gustavo A. Madero, CDMX</p>
+                <p class="contact">
+                    <img class="icon" src="img/phone-call.svg" alt="ícono teléfono">
+                    <a class="mail" href="tel:525590206366"> (55) 9020-6366 </a> | Lunes - Viernes
+                </p>
+                <p class="contact">
+                    <img class="icon" src="img/mail.svg" alt="ícono correo">
+                    <a class="mail" href="mailto:ventas@climaclick.com.mx">ventas@climaclick.com.mx</a>
+                </p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/climaclick.com.mx" target="_blank"><img src="img/facebook.svg" alt="ícono Facebook" class="social-icon"></a>
+                    <a href="https://www.instagram.com/climaclick.com.mx" target="_blank"><img src="img/instagram.svg" alt="ícono Instagram" class="social-icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Climaclick</p>
+    </footer>
+    <script src="js/modal.js" defer></script>
+</body>
+</html>

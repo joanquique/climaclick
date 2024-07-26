@@ -1,0 +1,230 @@
+// Colores
+$color-primario: #0465b0;
+$color-secundario: #fff;
+
+//Tipografia
+$font-family: "Montserrat", Arial, sans-serif;
+
+// Animación de entrada de modal
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+// Estilos para dispositivos móviles con un ancho máximo de 600px
+@media screen and (max-width: 600px) {
+    .banner, header {
+        padding: 50px 0; 
+    }
+    .banner {
+        width: 100%;
+        height: auto;
+    }
+    .banner-marcas {
+        width: 100%;
+        height: auto;
+    }
+
+    .texto-bienvenida, nav {
+        padding: 5px 0; 
+    }
+
+    .login {
+        padding: 4px 6px;
+        border-radius: 500px;
+        background-color: $color-primario;
+        color: $color-secundario;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: darken($color-primario, 10%);
+        }
+    }
+
+    nav {
+        ul {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #menu-icon {
+            padding: 15px 0 0 20px;
+        }
+
+        #cart-icon {
+            padding: 15px 20px 0 0;
+        }
+    }
+
+    body {
+        img {
+            max-width: 20rem;
+            display: block;
+            //margin: auto;
+        }
+
+        p {
+            padding: 15px;
+            font-size: 0.75rem;
+        }
+    }
+
+    .item {
+        width: calc(50% - 20px);
+    }
+    .cart__item {
+        max-width: 23.75rem;
+    }
+
+    .marca {
+        display: block;
+    }
+
+    .img-meses {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    footer {
+        flex-direction: column;
+        img {
+            display: inline;
+        }
+    }
+    
+}
+
+// Transición de botones 
+%transition-button {
+    transition: all 0.2s linear;
+}
+
+//Estilos de inputs
+%input-styles {
+    padding: 8px;
+    border: 2px solid $color-primario;
+    border-radius: 50px;
+    width: 90%;
+    font-size: 14px;
+    margin: 15px auto;
+    display: block;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+//Estilo de banners
+@mixin banner-general($background-image) {
+    background: url($background-image) center/cover;
+    height: 6rem;
+    padding: 5.5rem 0;
+    width: 100%;
+    margin: 15px 0;
+}
+
+@mixin banner-general-movil($background-image-mobile) {
+    background: url($background-image-mobile) center/cover;
+    height: 3.6rem;
+}
+
+//Estilo de botones general
+@mixin custom-button($color) {
+    margin: 15px auto;
+    display: flex;
+    justify-content: center;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 50px;
+    background-color: $color; 
+    color: $color-secundario;
+    font-size: 1em;
+    font-family: $font-family;
+    cursor: pointer;
+    @extend %transition-button;
+    
+    &:hover {
+        background-color: darken($color, 10%);
+        transform: scale(1.1);
+    }
+}
+
+//Estilo de contenedores de item
+%item-styles {
+    width: 300px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    /* Estilos para el título del producto */
+    h2 {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 1.2em;
+    }
+
+    /* Estilos para la descripción del producto */
+    p {
+        padding: 20px 5px 10px;
+        margin: 7px 0;
+        font-size: 0.9em;
+        color: #333;
+        font-family: $font-family;
+    }
+
+    /* Estilos para el precio del producto */
+    .precio {
+        display: block;
+        margin: 5px 0 20px;
+        text-align: center;
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #186332;
+    } 
+
+    /* Estilos para el botón de comprar */
+    .add-to-cart {
+        @include custom-button(#218748);
+    }
+    .btn-link {
+        text-decoration: none;
+    }
+    .img-item:hover {
+        transform: scale(1.6);
+    }
+}
+
+%title-style {
+    text-align: center;
+    font-weight: 200;
+}
+
+@media (min-width: 650px) {
+    .panel-nav {
+        justify-content: center; 
+    }
+}
+
+@media (min-width: 750px) {
+    .panel-nav {
+        justify-content: center; // Ensure it is centered
+    }
+
+    .boton-nav {
+        margin-right: 10px; // Adjust the margin to reduce space between buttons
+        
+        &:last-child {
+            margin-right: 0; // Ensure no extra margin on the last item
+        }
+    }
+}

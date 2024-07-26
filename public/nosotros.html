@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conoce a Climaclick, tu tienda de confianza en soluciones de aire acondicionado. Descubre nuestra historia, misión y compromiso con la calidad y el servicio al cliente. Estamos dedicados a mantenerte fresco y cómodo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/CARRITO_AZUL_PNG-02.png" type="image/png" alt="favicon">
+    <title>Nosotros</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="js/functions.js" defer></script>
+</head>
+<body>
+    <header> <!-- Barra de navegación -->
+        <nav class="busqueda-boton">
+            <ul>
+                <li>
+                    <form>
+                        <input type="text" name="q" placeholder="Filtrar productos...">
+                    </form>
+                </li>
+                <li>
+                    <button class="login" id="loginButton" style="display: none;">Iniciar sesión</button>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <div class="menu__icon-container">
+                <i class="header__icon" id="menu-toggle">
+                    <img id="menu-icon" src="img/menu.svg" alt="Icono Menu" width="30">
+                </i>
+            </div>
+            <ul class="panel-nav">
+                <li class="logo-nav">
+                    <a href="index.html" class="logo-link">
+                        <img class="logo-morl" id="logo" src="img/CLIMACLICK_AZUL.png" alt="logo climaclick">
+                    </a>
+                </li>
+                <li class="boton-nav"><a href="minisplit.html">Minisplit</a></li>
+                <li class="boton-nav"><a href="inverter.html">Inverter</a></li>
+                <li class="boton-nav"><a href="portatil.html">Portátil</a></li>
+                <li class="boton-nav"><a href="vrf.html">VRF</a></li>
+                <li class="boton-nav"><a href="gas_herramientas.html">Gas y Herramientas</a></li>
+            </ul>  
+            <div class="cart__icon-container">
+                <i class="header__icon" id="cart-toggle">
+                    <img id="cart-icon" src="img/shopping-cart.svg" width="30" alt="ícono carrito">
+                </i>
+            </div>      
+        </nav>
+    </header>
+    <div class="modal" id="modal"> <!-- Modal -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="text-sign-in">Inicio de sesión</p>
+            <form id="loginForm">
+                <!-- Campos de login -->
+                <input type="email" id="email" placeholder="Correo electrónico">
+                <input type="password" id="password" placeholder="Contraseña">
+                <div class="checkbox">
+                    <input type="checkbox">  Mantener sesión iniciada
+                </div>
+                <button type="submit" class="submit">Iniciar sesión</button>
+            </form>
+            <p class="text-sign-up">¿No tienes una cuenta? <a href="sign-up.html" id="registerLink">Regístrate aquí</a></p>
+            <small>&copy; 2024 Climaclick</small>
+        </div>
+    </div>
+    <main>
+        <div class="banner-nosotros"></div>
+        <div class="item-design">
+            <div class="left-side">
+                <div class="left-content">
+                    <br>
+                    <span class="text-archivo-black" style="font-size: 24px; font-weight: 100; padding-left: 35px;">NUESTRO</span><br>
+                    <span class="text-montserrat" style="font-size: 24px; padding-left: 2.3rem;">TRABAJO</span></h2>
+                    <p style="font-size: 18px;">
+                        <br>
+                        Trabajamos para ofrecerte los productos necesarios para cualquier espacio de tu vida cotidiana, 
+                        mejorando tu calidad de vida con soluciones personalizadas.
+                        <br>
+                    </p>
+                    <br><br>
+                    <span class="text-archivo-black" style="font-size: 24px; font-weight: 100; padding-left: 35px;">NUESTRA</span><br>
+                    <span class="text-montserrat" style="font-size: 24px; padding-left: 35px;">MISIÓN</span></h2>
+                    <p style="font-size: 18px;">
+                        <br>
+                        Ofrecer soluciones de aire acondicionado eficientes y rentables, adaptadas a tus necesidades, 
+                        para garantizar una experioencia excepcional.
+                        <br>
+                    </p>
+                </div>
+            </div>
+            <div class="right-side">
+                <img src="img/IMG-NOSOTROS.jpg" alt="img nosotros">
+            </div>
+        </div>
+        <div class="banner-marcas-nosotros"></div>
+        <section class="cart cart--container"> <!-- Carrito de compras-->
+            <h2 class="cart__title">CARRITO</h2>
+            <hr>
+            <i id="cart-close"><img src="img/x.svg" class="cart__close-icon" alt="ícono cerrar carrito" width="25"></i> 
+            <div class="cart__item-count-container">
+                <span id="cart-item-count" class="cart__item-count"></span>
+                <span class="cart__item-text">Artículos</span>
+            </div>
+            <div class="cart__total-container">
+                <span class="cart__item-text">Total a pagar: $</span><b><span id="cart-total" class="cart__total"></b></span>
+            </div>
+            <a href="informacion_compra.html" aria-label="Proceder a informacion de compra">
+                <button class="boton-comprar" id="buy-button" style="display: none;">Comprar</button>
+            </a>
+            <div class="cart__item"></div>
+        </section>
+        <section class="menu menu--container"> <!-- Menú a la izquierda (móvil)-->
+            <h2 class="menu__title">MENU</h2>
+            <i id="menu-close"><img src="img/x.svg" class="menu__close-icon" alt="ícono cerrar menú" width="25"></i> 
+            <ul class="no-bullets">
+                <li class="menu-item"><a href="minisplit.html">Minisplit</a></li>
+                <li class="menu-item"><a href="inverter.html">Inverter</a></li>
+                <li class="menu-item"><a href="portatil.html">Portátil</a></li>
+                <li class="menu-item"><a href="vrf.html">VRF</a></li>
+                <li class="menu-item"><a href="gas_herramientas.html">Gas y Herramientas</a></li>
+            </ul>
+        </section>
+    </main>
+    <hr>
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html"><img src="img/CLIMACLICK_AZUL.png" alt="Logo Climaclick"></a>
+        </div>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Categorías</h3>
+                <ul>
+                    <li><a href="minisplit.html">Minisplit</a></li>
+                    <li><a href="inverter.html">Inverter</a></li>
+                    <li><a href="portatil.html">Portátil</a></li>
+                    <li><a href="vrf.html">VRF</a></li>
+                    <li><a href="gas_herramientas.html">Gas y Herramientas</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="politicas.html">Políticas</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <p class="address">Schumann 202 Gustavo A. Madero, CDMX</p>
+                <p class="contact">
+                    <img class="icon" src="img/phone-call.svg" alt="ícono teléfono">
+                    <a class="mail" href="tel:525590206366"> (55) 9020-6366 </a> | Lunes - Viernes
+                </p>
+                <p class="contact">
+                    <img class="icon" src="img/mail.svg" alt="ícono correo">
+                    <a class="mail" href="mailto:ventas@climaclick.com.mx">ventas@climaclick.com.mx</a>
+                </p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/climaclick.com.mx" target="_blank"><img src="img/facebook.svg" alt="ícono Facebook" class="social-icon"></a>
+                    <a href="https://www.instagram.com/climaclick.com.mx" target="_blank"><img src="img/instagram.svg" alt="ícono Instagram" class="social-icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Climaclick</p>
+    </footer>
+    <script src="js/modal.js" defer></script>
+</body>
+</html>

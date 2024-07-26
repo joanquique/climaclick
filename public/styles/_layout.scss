@@ -1,0 +1,721 @@
+// Estilos generales
+body {
+    font-family: $font-family, Arial, sans serif;
+    margin: 0;
+    padding: 0;
+}
+
+// Estilos del banner
+.banner {
+    background: url('../img/BANNER.webp') center/cover;
+    height: 12.5rem;
+    padding: 9rem 0;
+}
+
+@media screen and (max-width: 768px){
+    .banner {
+        background: url('../img/BANNER-CEL.webp') center/cover;
+        height: auto;
+    }
+}
+
+.banner-marcas {
+    background: url('../img/BANNER-ACTUALIZADO.webp') center/cover;
+    height: auto;
+    padding: 16rem 0;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px){
+    .banner-marcas {
+        background: url('../img/MARCAS--CEL.webp') center/cover;
+        height: 28rem;
+        width: 23.7rem;
+        padding: 1rem;
+    }
+}
+
+.banner-marcas-nosotros {
+    background: url('../img/MARCAS.webp') center/cover;
+    height: auto;
+    padding: 6rem 0;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px){
+    .banner-marcas-nosotros {
+        background: url('../img/MARCAS--CEL.webp') center/cover;
+        height: 28rem;
+        width: 23.7rem;
+        padding: 1rem;
+    }
+}
+
+.banner-instalacion {
+    background: url('../img/BANNER-INSTALACION.webp') center/cover;
+    height: auto;
+    padding: 16rem 0;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px){
+    .banner-instalacion {
+        background: url('../img/BANNER-INSTALACION-MOVIL.webp') center/cover;
+        height: 28rem;
+        width: 23.7rem;
+        padding: 1rem;
+    }
+}
+
+// Banners Generales
+.banner-hogar {
+    @include banner-general ('../img/CABECERA-HOGAR.webp');
+}
+
+.banner-negocio {
+    @include banner-general ('../img/CABECERA-NEGOCIO.webp');
+}
+
+.banner-minisplit {
+    @include banner-general ('../img/CABECERA-MINISPLIT.webp');
+}
+
+.banner-inverter {
+    @include banner-general ('../img/CABECERA-INVERTER.webp');
+}
+
+.banner-portatil {
+    @include banner-general ('../img/CABECERA-INVERTER.webp');
+}
+
+.banner-tools-gas {
+    @include banner-general ('../img/GAS-HERRAMIENTAS.webp');
+}
+
+.banner-nosotros {
+    @include banner-general ('../img/CABECERA-NOSOTROS.webp');
+}
+
+.banner-vrf {
+    @include banner-general ('../img/CABECERAS-VRF.webp');
+}
+
+// Banners Generales Móviles
+@media screen and (max-width: 600px) {
+    .banner-hogar {
+        @include banner-general-movil ('../img/CABECERA-HOGAR-MOVIL.webp');
+    }
+    .banner-negocio {
+        @include banner-general-movil('../img/CABECERA-NEGOCIO-MOVIL.webp');
+    }
+    .banner-minsplit {
+        @include banner-general-movil('../img/CABECERA-MINISPLIT-MOVIL.webp');
+    }
+    .banner-inverter {
+        @include banner-general-movil('../img/CABECERA-INVERTER-MOVIL.webp');
+    }
+    .banner-portatil {
+        @include banner-general-movil('../img/CABECERA-PORTATIL-MOVIL.webp');
+    }
+    .banner-tools-gas {
+        @include banner-general-movil('../img/GAS-HERRAMIENTAS-MOVIL.webp');
+    }
+    .banner-nosotros {
+        @include banner-general-movil('../img/CABECERA-NOSOTROS-MOVIL.webp');
+    }
+    .banner-vrf {
+        @include banner-general-movil('../img/CABECERAS-VRFMOVIL.webp');
+    }
+}
+
+// Encabezado
+header {
+    z-index: 1000;
+    background-color: #fff;
+    color: $color-secundario;
+    padding: 15px 0 10px 0;
+    height: auto;
+    width: 100%; /* Asegura que el header ocupe toda la anchura */
+
+    nav {
+        display: flex;
+        align-items: center;
+
+        .logo-morl {
+            padding: 0 3px 0 28px;
+            width: 150px;
+            height: auto;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end; /* Alinea los elementos a la derecha */
+            align-items: center;
+            flex-grow: 1;
+
+            li {
+                margin-right: 20px;
+
+                a {
+                    padding: 5px 13px;
+                    color: black;
+                    text-decoration: none;
+                    border: 1px solid $color-primario;
+                    border-radius: 500px;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease, transform 0.3s ease;
+                    font-family: $font-family;
+
+                    &:hover {
+                        background-color: darken($color-primario, 10%);
+                        transform: scale(1.1);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        .header__icon {
+            padding-right: 30px;
+            width: 40px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .panel-nav {
+            justify-content: space-evenly; // Comportamiento predeterminado para pantallas más pequeñas
+        }
+
+        .boton-nav {
+            //padding-right: 5rem;
+            align-self: center;
+        }
+    }
+
+    .logo-link {
+        padding-left: 36px; /* Elimina padding */
+        border: none; /* Sin bordes */
+        border-radius: 0; /* Sin bordes redondeados */
+        background-color: transparent; /* Fondo transparente */
+        transition: none; /* Sin transición */
+    }
+
+    .logo-link:hover {
+        background-color: transparent; /* Sin cambio de fondo al pasar el cursor */
+        transform: none; /* Sin transformación */
+        color: inherit; /* Heredar color del padre */
+    }
+}
+
+header.scrolled {
+    position: fixed; /* Fija el header en la parte superior */
+    top: 0; /* Asegura que esté al principio de la ventana */
+    left: 0; /* Asegura que esté a la izquierda de la ventana */
+    width: 100%; /* Opcional: asegura que el header ocupe toda la anchura */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para resaltar el header */
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+
+    nav {
+        justify-content: flex-end; /* Alinea los elementos a la derecha cuando se hace scroll */
+    }
+}
+
+// Contenedor principal
+main {
+    padding: auto;
+    h2 {
+        text-align: center;
+    }
+    .head-text-container{
+        @extend %title-style;
+    }
+    
+    h3 {
+        @extend %title-style;
+    }
+
+    .img-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+        //padding: 50px;
+        .img-link {
+            width: 500px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            padding: 0;
+            margin: 25px 0;
+        }
+    }
+
+    p {
+        padding: 0 6%;
+        text-align: justify;
+        margin-top: 20px;
+    }
+
+    .text-archivo-black {
+        font-family: "Archivo Black", Arial, serif;
+        text-align: center;
+    }
+
+    .text-montserrat {
+        font-family: "Montserrat", Arial, serif;
+        text-align: center;
+        font-weight: 400;
+    }
+
+    img {
+        width: 40rem;
+        display: block;
+        padding: 25px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: $color-secundario;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .registration-form {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        font-weight: bold;
+    }
+
+    #nombre, #correo,
+    #passwrd, #mensaje,
+    #telefono, #direccion,
+    #calle, #num_ext, #cp,
+    #num_int, #colonia,
+    #city, #state, #pais,
+    #referencia {
+        @extend %input-styles;
+    }
+
+    .boton-seguir-pago {
+        @include custom-button($color-primario);
+    }
+
+    .meses-container {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .img-meses {
+        display: flex;
+        width: 75%; 
+        height: auto;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+    @media screen and (max-width: 600px) {
+        .img-meses {
+            width: 100%;
+        }
+    }
+    
+    button {
+        background-color: $color-primario;
+        color: $color-secundario;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .img-product, .product-description {
+        width: 25rem;
+        margin: 10px; 
+        border-radius: 35px;
+    }
+
+    .item-design {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    
+        .left-side {
+            width: 50%;
+            padding: 20px;
+            padding-left: 120px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .left-content {
+                width: 100%;
+                h2 {
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                    span.text-archivo-black {
+                        color: #120255;
+                    }
+                }
+    
+                ul {
+                    list-style-type: disc;
+                    padding-left: 20px;
+                    margin-bottom: 20px;
+                    padding-left: 4rem;
+    
+                    li {
+                        margin-bottom: 5px;
+                    }
+                }
+    
+                p {
+                    line-height: 1.6;
+                }
+            }
+    
+            img.img-item {
+                width: 100%;
+                height: auto;
+                margin-bottom: 1px;
+            }
+    
+            section.items {
+                width: 100%;
+                text-align: center; /* Centra el contenido dentro de section */
+            }
+    
+            img {
+                width: 70%; /* Ajusta el ancho según necesites */
+                max-width: 100%; /* Ajusta el margen superior según necesites */
+            }
+
+            ul {
+                text-align: left;
+                margin-bottom: 35px;
+            }
+    
+            span.text-archivo-black {
+                color: #2599e8;
+            }
+    
+            span.text-montserrat {
+                color: #120255;
+                font-weight: 800;
+            }
+            
+        }
+    
+        .right-side {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra los elementos horizontalmente */
+    
+            span.text-archivo-black {
+                color: #2599e8;
+            }
+    
+            span.text-montserrat {
+                color: #120255;
+                font-weight: 800;
+            }
+
+            ul {
+                margin-bottom: 30px;
+            }
+
+        }
+    
+        @media screen and (max-width: 768px) {
+            p {
+                line-height: 1.6;
+                font-size: 16px;
+             }
+            .left-side,
+            .right-side {
+                width: 100%;
+                padding: 10px;
+            }
+    
+            .right-content,
+            .right-side {
+                section.items {
+                    article.item {
+                        width: 100%;
+                    }
+                }
+            }
+            .left-side {
+                order: 1; /* Cambiamos el orden en móviles */
+                padding: 10px; /* Ajuste adicional para móviles */
+            }
+    
+            .right-side {
+                order: 2; /* Cambiamos el orden en móviles */
+                padding: 10px; /* Ajuste adicional para móviles */
+            }
+    
+            .img-meses {
+                order: 5; /* Cambiamos el orden en móviles */
+            }
+        }
+    }
+
+    @keyframes slideIn {
+        0% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .img-item {
+        padding: 0;
+        animation: slideIn 0.8s ease-out forwards; /* forwards mantiene el estado final de la animación */
+    }
+    
+    .notification {
+        position: fixed;
+        top: -50px; /* Inicia fuera de la vista */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #218748;
+        color: #fff;
+        padding: 15px 30px;
+        border-radius: 25px;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: top 0.5s ease, opacity 0.5s ease;
+        text-align: center;
+        width: 55%;
+    }
+    
+    .notification.visible {
+        top: 20px; /* Posición visible */
+        opacity: 1;
+    }
+    
+    .hidden {
+        display: none;
+    }
+
+    /* Estilos para la sección de productos */
+    .items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+        
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+    /* Estilos para cada producto */
+        .item-single { // Articulo individual
+            @extend %item-styles;
+
+            width: 20rem;
+            padding: 20px;
+
+            /* Estilos para el precio del producto */
+            .precio {
+                padding: 15px;
+            }
+            
+            @media screen and (max-width: 600px){
+                width: 75%;
+            }
+        }
+
+        .item { // Artículos en productos.html
+            @extend %item-styles;
+
+            /* Estilos para la imagen del producto */
+            .img-item {
+                width: 100%;
+                max-width: 15rem;
+                //border-radius: 35px;
+                height: auto;
+                transition: all 0.2s linear;
+                margin: 15px auto;
+            }
+
+            /* Estilos para la descripción del producto */
+            p {
+                padding: 20px;
+            }
+
+            /* Estilos para el botón de información */
+            .boton-info {
+                @include custom-button($color-primario);
+            }
+            /* Estilos para el botón de la ficha técnica */
+            .boton-ficha {
+                @include custom-button(#df2828);
+            }
+        }   
+
+    }
+
+    .marcas {
+        .marca {
+            display: flex;
+            justify-content: space-evenly;
+
+            .img-marca {
+                display: flex;
+                width: 350px;
+                align-items: center;
+            }
+        
+            .text-marcas {
+                display: flex;
+                font-size: 26px;
+                font-weight: 400;
+                align-items: center;
+            }
+            
+        }
+
+    }
+}
+
+// Pie de página
+footer {
+    background-color: #fff; /* Fondo blanco */
+    color: #000; /* Texto negro */
+    padding: 20px 0;
+    text-align: center;
+    font-family: $font-family;
+  
+    h3 {
+        text-align: center;
+    }
+    
+    .footer-logo {
+        margin-bottom: 20px;
+        img {
+            max-width: 120px; /* Ajusta el tamaño del logo según sea necesario */
+        }
+    }
+  
+    .footer-content {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    
+        .footer-column {
+            width: 45%; /* Ajusta el ancho de las columnas */
+            text-align: left;
+            margin-bottom: 20px;
+            text-align: center;
+  
+            h3 {
+                margin-bottom: 10px;
+            }
+    
+            ul {
+                list-style: none;
+                padding: 0;
+
+                li {
+                    margin-bottom: 5px;
+                    text-align: center;
+                }
+
+                a {
+                    color: #000; /* Color de texto secundario */
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+            
+            p {
+                margin: 5px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .icon {
+                    width: 20px;
+                    margin-right: 10px;
+                    filter: invert(0);
+                }
+
+                .mail {
+                    color: #000; /* Color de texto secundario */
+                    text-decoration: none;
+                }
+            }
+    
+            .social-icons {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 10px;
+
+                .social-icon {
+                    width: 20px;
+                    margin-right: 10px;
+                    filter: invert(0);
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
+  
+    .copyright {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+}
+
+// Políticas
+.h1-politicas {
+    font-weight: 400;
+    font-family: $font-family;
+    text-align: center ;
+}
+.text-politicas {
+    font-size: 12px;
+    color: #6c6c6c;
+    text-align: justify;
+}    
+

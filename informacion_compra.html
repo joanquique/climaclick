@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="img/CARRITO_AZUL_PNG-02.png" type="image/png" alt="favicon">
-    <title>Registro de Usuario</title>
+    <title>Compra | Climaclick</title>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
     <link rel="stylesheet" href="styles/main.css">
     <script src="js/functions.js" defer></script>
 </head>
@@ -73,7 +75,7 @@
         <div class="container">
             <h2>Ingresa tus datos para completar tu compra</h2>
             <br>
-            <form action="#" method="POST" class="registration-form">
+            <form id="paymentForm" action="#" method="POST" class="registration-form">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
@@ -121,10 +123,13 @@
                     <label for="termsCheckbox" style="font-weight: 400;">
                         Al registrarte, aceptas los <a href="politicas.html"><b>Términos y Condiciones</b></a> y las <b>Políticas de Privacidad de Datos Personales</b></a>.
                     </label>
-                </div>                
-                <button class="boton-seguir-pago" type="submit">Proceder al pago</button>
+                </div> 
+                <a href="pago.html">
+                    <button class="boton-seguir-pago" type="submit">Proceder al pago</button>
+                </a>               
             </form>
         </div>
+        
         <section class="cart cart--container"> <!-- Carrito de compras-->
             <h2 class="cart__title">CARRITO</h2>
             <hr>
@@ -152,6 +157,26 @@
                 <li class="menu-item"><a href="gas_herramientas.html">Gas y Herramientas</a></li>
             </ul>
         </section>
+        <div id="wallet_container"></div>
+        <script>
+            
+            const mp = new MercadoPago('TEST-1fc34468-9d77-4273-97a4-47badd6351c2');
+            const bricksBuilder = mp.bricks();
+            
+            const preferenceId = '<%= preferenceId %>'; // Obtener el ID de la preferencia desde el servidor
+            
+            mp.bricks().create("wallet", "wallet_container", {
+                initialization: {
+                    preferenceId: preferenceId,
+                },
+                customization: {
+                    texts: {
+                        valueProp: 'smart_option',
+                    },
+                },
+            });
+
+        </script>
     </main>
     <hr>
     <footer>

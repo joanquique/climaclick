@@ -124,8 +124,8 @@
                         Al registrarte, aceptas los <a href="politicas.html"><b>Términos y Condiciones</b></a> y las <b>Políticas de Privacidad de Datos Personales</b></a>.
                     </label>
                 </div> 
-                <a href="pago.html">
-                    <button class="boton-seguir-pago" type="submit">Proceder al pago</button>
+                <a href="index.html">
+                    <button class="boton-seguir-pago" id="pay-button" type="submit">Proceder al pago</button>
                 </a>               
             </form>
         </div>
@@ -159,24 +159,41 @@
         </section>
         <div id="wallet_container"></div>
         <script>
-            
             const mp = new MercadoPago('TEST-1fc34468-9d77-4273-97a4-47badd6351c2');
             const bricksBuilder = mp.bricks();
             
-            const preferenceId = '<%= preferenceId %>'; // Obtener el ID de la preferencia desde el servidor
-            
-            mp.bricks().create("wallet", "wallet_container", {
-                initialization: {
-                    preferenceId: preferenceId,
-                },
-                customization: {
-                    texts: {
-                        valueProp: 'smart_option',
-                    },
-                },
-            });
+            document.getElementById('pay-button').addEventListener('click', () => {
+                
+                // const article = document.querySelector(".cart__item.p").innerText;
+                // console.log(article)
+                const quantity = document.querySelector("span.cart__item-count").innerText;
+                const total = document.querySelector("span.cart__total").innerText;
+                const formattedTotal = parseFloat(total.replace(/,/g, '').replace('.', ''));
+                const result = (formattedTotal / 100).toFixed(2);
 
-        </script>
+                fetch('/create-preference', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        quantity: parseInt(quantity),
+                        unit_price: parseFloat(result)
+                    })
+                })
+              .then(response => response.json())
+              .then(data => {
+                if (data.preferenceId) {
+                  console.log(`Preferencia creada con ID: ${data.preferenceId}`);
+                  // Redirigir al usuario a la página de pago de Mercado Pago
+                  window.location.href = `https://www.mercadopago.com.mx/checkout/v1/redirect?preference-id=${data.preferenceId}`;
+                } else {
+                  console.error('Error creating preference:', data.error);
+                }
+              })
+              .catch(error => console.error('Error:', error));
+            });
+          </script>
     </main>
     <hr>
     <footer>

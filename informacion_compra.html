@@ -121,10 +121,10 @@
                 <div class="terms">
                     <input type="checkbox" id="termsCheckbox" required>
                     <label for="termsCheckbox" style="font-weight: 400;">
-                        Al registrarte, aceptas los <a href="politicas.html"><b>Términos y Condiciones</b></a> y las <b>Políticas de Privacidad de Datos Personales</b></a>.
+                        Al hacer clic, aceptas los <a href="politicas.html"><b>Términos y Condiciones</b></a> y las <b>Políticas de Privacidad de Datos Personales</b></a>.
                     </label>
                 </div> 
-                <button class="boton-seguir-pago" id="pay-button" type="submit">Proceder al pago</button>           
+                <button class="boton-seguir-pago" id="pay-button" type="button">Proceder al pago</button>           
                 <div id="wallet_container"></div>
             </div>
         </div>
@@ -173,7 +173,7 @@
                     const orderData = {
                         title: "Prueba",
                         quantity: quantity,
-                        price: result,
+                        price: result / quantity,
                     };
                 
                     const response = await fetch("http://localhost:3000/create_preference", {

@@ -30,45 +30,45 @@ app.get('/', (req, res) => {
 });
 
 app.post("/create_preference", async (req, res) => {
-  try {
-      const body = {
-          payment_methods: {
-            excluded_payment_methods: [],
-            excluded_payment_types: [
-              {
-                id: "bank_transfer"
-              }
+    try {
+        const body = {
+            payment_methods: {
+                excluded_payment_methods: [],
+                excluded_payment_types: [
+                    {
+                      id: "bank_transfer"
+                    }
+                  ],
+                installments: 1,
+            },
+            items: [
+                {
+                    title: req.body.title,
+                    quantity: Number(req.body.quantity),
+                    unit_price: Number(req.body.price),
+                    currency_id: "MXN",
+                },
             ],
-            installments: 1,
-          },
-          items: [
-              {
-                  title: req.body.title,
-                  quantity: Number(req.body.quantity),
-                  unit_price: Number(req.body.price),
-                  currency_id: "MXN",
-              },
-          ],
-          back_urls: {
-              success: "https://github.com/joanquique/climaclick",
-              failure: "https://github.com/joanquique/climaclick",
-              pending: "https://github.com/joanquique/climaclick",
-          },
-          auto_return: "approved",
-      };
+            back_urls: {
+                success: "https://github.com/joanquique/climaclick",
+                failure: "https://github.com/joanquique/climaclick",
+                pending: "https://github.com/joanquique/climaclick",
+            },
+            auto_return: "approved",
+        };
 
-      const preference = new Preference (client);
-      const result = await preference.create({body});
-      res.json({
-          id: result.id,
-      });
-  } catch(error){
-      console.log(error);
-      res.status(500).json({
-          error: "Error al crear la preferencia :("
-      })
+        const preference = new Preference (client);
+        const result = await preference.create({body});
+          res.json({
+              id: result.id,
+          });
+    } catch(error){
+          console.log(error);
+          res.status(500).json({
+              error: "Error al crear la preferencia :("
+          })
 
-  }
+    }
 })
 
 // Iniciar el servidor

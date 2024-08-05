@@ -313,6 +313,10 @@ main {
 
     .boton-seguir-pago {
         @include custom-button($color-primario);
+        
+        &.hidden {
+            @include fade-out;
+        }
     }
 
     .meses-container {

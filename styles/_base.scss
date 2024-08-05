@@ -155,6 +155,12 @@ $font-family: "Montserrat", Arial, sans-serif;
     }
 }
 
+@mixin fade-out {
+    animation: fadeOut 2s forwards;
+    opacity: 0;
+    pointer-events: none;
+}
+
 //Estilo de contenedores de item
 %item-styles {
     width: 300px;

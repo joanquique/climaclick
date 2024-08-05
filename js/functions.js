@@ -87,6 +87,45 @@ document.addEventListener('DOMContentLoaded', function() {
     loadCartFromLocalStorage();
     updateCartTotal(); // Actualiza el total a pagar al cargar la página
     verificarCarrito();
+
+    //Verificar que no exista el botón de Proceder al pago en el DOM
+    const payButton = document.getElementById('pay-button');
+  
+    // Verifica si el botón de pago está presente en el DOM
+    if (payButton) {
+      payButton.addEventListener('click', function() {
+        const requiredFields = [
+          'nombre', 'correo', 'telefono', 'calle', 'num_ext', 'cp',
+          'colonia', 'city', 'state', 'pais', 'referencia', 'termsCheckbox'
+        ];
+  
+        let allFieldsFilled = true;
+  
+        requiredFields.forEach(fieldId => {
+          const field = document.getElementById(fieldId);
+  
+          // Solo procede si el campo existe
+          if (field) {
+            if (!field.value || (field.type === 'checkbox' && !field.checked)) {
+              allFieldsFilled = false;
+              field.classList.add('invalid');
+            } else {
+              field.classList.remove('invalid');
+            }
+          }
+        });
+  
+        if (allFieldsFilled) {
+          payButton.classList.add('hidden');
+          const walletContainer = document.getElementById('wallet_container');
+          if (walletContainer) {
+            walletContainer.style.display = 'block';
+          }
+        } else {
+          alert('Por favor completa todos los campos antes de proceder.');
+        }
+      });
+    }
 });
 
 function animateIcon(iconElement, newSrc = null) {
@@ -328,3 +367,8 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+  });
+  

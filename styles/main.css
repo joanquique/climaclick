@@ -944,6 +944,11 @@ main .boton-seguir-pago:hover {
   background-color: #03487e;
   transform: scale(1.1);
 }
+main .boton-seguir-pago.hidden {
+  animation: fadeOut 2s forwards;
+  opacity: 0;
+  pointer-events: none;
+}
 main .meses-container {
   display: flex;
   justify-content: space-evenly;

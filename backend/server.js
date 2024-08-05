@@ -1,5 +1,8 @@
 import express from "express"
 import cors from "cors"
+import path from "path";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from 'mercadopago';
@@ -14,17 +17,30 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Servir archivos estáticos desde la carpeta 'public'
-app.use(express.static('public'));
+// Necesario para obtener __dirname en ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Servir archivos estáticos desde la raíz del proyecto
+app.use(express.static(path.join(__dirname, '../')));
 
 // Ruta principal para servir el archivo HTML principal
 app.get('/', (req, res) => {
-  res.send("soy el server :)");
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.post("/create_preference", async (req, res) => {
   try {
       const body = {
+          payment_methods: {
+            excluded_payment_methods: [],
+            excluded_payment_types: [
+              {
+                id: "bank_transfer"
+              }
+            ],
+            installments: 1,
+          },
           items: [
               {
                   title: req.body.title,

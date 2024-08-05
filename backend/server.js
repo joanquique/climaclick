@@ -50,9 +50,9 @@ app.post("/create_preference", async (req, res) => {
                 },
             ],
             back_urls: {
-                success: "https://github.com/joanquique/climaclick",
-                failure: "https://github.com/joanquique/climaclick",
-                pending: "https://github.com/joanquique/climaclick",
+                success: "https://github.com/joanquique",
+                failure: "https://github.com/joanquique",
+                pending: "https://github.com/joanquique",
             },
             auto_return: "approved",
         };

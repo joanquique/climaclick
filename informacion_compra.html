@@ -163,15 +163,16 @@
             const bricksBuilder = mp.bricks();
             
             document.getElementById('pay-button').addEventListener('click', async () => {
-
+                
                 const quantity = document.querySelector("span.cart__item-count").innerText;
+                const name = document.querySelector("div.cart__item").innerText;
                 const total = document.querySelector("span.cart__total").innerText;
                 const formattedTotal = parseFloat(total.replace(/,/g, '').replace('.', ''));
                 const result = (formattedTotal / 100).toFixed(2);
 
                 try {
                     const orderData = {
-                        title: "Prueba",
+                        title: name,
                         quantity: quantity,
                         price: result / quantity,
                     };

@@ -75,7 +75,7 @@
         <div class="container">
             <h2>Ingresa tus datos para completar tu compra</h2>
             <br>
-            <form id="paymentForm" action="#" method="POST" class="registration-form">
+            <div id="paymentForm" class="registration-form">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <input type="text" id="nombre" name="nombre" required>
@@ -124,10 +124,9 @@
                         Al registrarte, aceptas los <a href="politicas.html"><b>Términos y Condiciones</b></a> y las <b>Políticas de Privacidad de Datos Personales</b></a>.
                     </label>
                 </div> 
-                <a href="index.html">
-                    <button class="boton-seguir-pago" id="pay-button" type="submit">Proceder al pago</button>
-                </a>               
-            </form>
+                <button class="boton-seguir-pago" id="pay-button" type="submit">Proceder al pago</button>           
+                <div id="wallet_container"></div>
+            </div>
         </div>
         
         <section class="cart cart--container"> <!-- Carrito de compras-->
@@ -157,42 +156,54 @@
                 <li class="menu-item"><a href="gas_herramientas.html">Gas y Herramientas</a></li>
             </ul>
         </section>
-        <div id="wallet_container"></div>
         <script>
-            const mp = new MercadoPago('TEST-1fc34468-9d77-4273-97a4-47badd6351c2');
+            const mp = new MercadoPago('TEST-1fc34468-9d77-4273-97a4-47badd6351c2', {
+                locale: "es-MX",
+            });
             const bricksBuilder = mp.bricks();
             
-            document.getElementById('pay-button').addEventListener('click', () => {
-                
-                // const article = document.querySelector(".cart__item.p").innerText;
-                // console.log(article)
+            document.getElementById('pay-button').addEventListener('click', async () => {
+
                 const quantity = document.querySelector("span.cart__item-count").innerText;
                 const total = document.querySelector("span.cart__total").innerText;
                 const formattedTotal = parseFloat(total.replace(/,/g, '').replace('.', ''));
                 const result = (formattedTotal / 100).toFixed(2);
 
-                fetch('/create-preference', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        quantity: parseInt(quantity),
-                        unit_price: parseFloat(result)
-                    })
-                })
-              .then(response => response.json())
-              .then(data => {
-                if (data.preferenceId) {
-                  console.log(`Preferencia creada con ID: ${data.preferenceId}`);
-                  // Redirigir al usuario a la página de pago de Mercado Pago
-                  window.location.href = `https://www.mercadopago.com.mx/checkout/v1/redirect?preference-id=${data.preferenceId}`;
-                } else {
-                  console.error('Error creating preference:', data.error);
+                try {
+                    const orderData = {
+                        title: "Prueba",
+                        quantity: quantity,
+                        price: result,
+                    };
+                
+                    const response = await fetch("http://localhost:3000/create_preference", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(orderData),
+                    });
+                
+                    const preference = await response.json()
+                    createCheckoutButton(preference.id);
+                
+                } catch (error){
+                    alert("error: :(");
                 }
-              })
-              .catch(error => console.error('Error:', error));
             });
+            const createCheckoutButton = (preferenceId) => {
+                const bricksBuilder = mp.bricks();
+
+                const renderComponent = async () => {
+                    if(window.checkoutButton) window.checkoutButton.unmount();
+                    await bricksBuilder.create("wallet", "wallet_container", {
+                        initialization: {
+                            preferenceId: preferenceId,
+                        },
+                    });
+                }
+                renderComponent();
+            };
           </script>
     </main>
     <hr>

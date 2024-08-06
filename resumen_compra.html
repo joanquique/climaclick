@@ -11,48 +11,8 @@
     <link rel="icon" href="img/CARRITO_AZUL_PNG-02.png" type="image/png" alt="favicon">
     <title>Resumen | Climaclick</title>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
-
     <link rel="stylesheet" href="styles/main.css">
     <script src="js/functions.js" defer></script>
-    <style>
-        .order-summary {
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .item-summary {
-            margin-bottom: 20px;
-        }
-
-        .summary-total {
-            font-weight: bold;
-            font-size: 1.2em;
-            text-align: right;
-            margin-top: 20px;
-        }
-
-        .boton-confirmar {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 1em;
-        }
-
-        .boton-confirmar:hover {
-            background-color: #218838;
-        }
-
-    </style>
 </head>
 <body>
     <header> <!-- Barra de navegación -->
@@ -127,56 +87,10 @@
             <div class="summary-total">
                 <span>Total a pagar: $<span id="summary-total"></span></span>
             </div>
-            <button class="boton-confirmar">Confirmar Compra</button>
+            <a href="index.html">
+                <button class="boton-confirmar">Seguir comprando</button>
+            </a>
         </section>
-        
-        
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const itemsSummaryContainer = document.getElementById('items-summary-container');
-                const summaryTotalElement = document.getElementById('summary-total');
-
-                // Obtener los artículos del carrito desde el localStorage
-                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-                
-                // Log para verificar que los artículos se cargan correctamente
-                console.log("Artículos en el carrito:", cartItems);
-
-                // Verificar si el carrito está vacío
-                if (cartItems.length === 0) {
-                    itemsSummaryContainer.innerHTML = "<p>No hay artículos en tu compra.</p>";
-                } else {
-                    let total = 0;
-
-                    cartItems.forEach(item => {
-                        // Log para verificar cada artículo
-                        console.log("Artículo:", item);
-
-                        const itemElement = document.createElement('div');
-                        itemElement.classList.add('item-summary');
-
-                        // Crear el HTML para cada artículo
-                        itemElement.innerHTML = `
-                            <h3>${item.name}</h3>
-                            <p>Cantidad: ${item.quantity}</p>
-                            <p>Precio: $${item.price.toFixed(2)}</p>
-                            <hr>
-                        `;
-
-                        // Añadir el artículo al contenedor
-                        itemsSummaryContainer.appendChild(itemElement);
-
-                        // Calcular el total a pagar
-                        total += item.price * item.quantity;
-                    });
-
-                    // Mostrar el total en el resumen
-                    summaryTotalElement.textContent = total.toFixed(2);
-                }
-            });
-
-
-        </script>
     </main>
     <hr>
     <footer>

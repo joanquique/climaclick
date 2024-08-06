@@ -616,6 +616,34 @@ main {
         }
 
     }
+
+    .order-summary {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+        max-width: 600px;
+        margin: 0 auto;
+        
+        .item-summary {
+            margin-bottom: 20px;
+        }
+        
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        
+        .boton-confirmar {
+            @include custom-button($color-primario);
+        }
+    }
 }
 
 // Pie de página

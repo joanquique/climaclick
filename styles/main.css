@@ -74,7 +74,7 @@
     display: inline;
   }
 }
-main .items .item .boton-ficha, main .items .item .boton-info, main .boton-seguir-pago, .cart a .boton-comprar, .submit, .login, main .items .item .add-to-cart, main .items .item-single .add-to-cart {
+main .order-summary .boton-confirmar, main .items .item .boton-ficha, main .items .item .boton-info, main .boton-seguir-pago, .cart a .boton-comprar, .submit, .login, main .items .item .add-to-cart, main .items .item-single .add-to-cart {
   transition: all 0.2s linear;
 }
 
@@ -1217,6 +1217,43 @@ main .marcas .marca .text-marcas {
   font-size: 26px;
   font-weight: 400;
   align-items: center;
+}
+main .order-summary {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+main .order-summary .item-summary {
+  margin-bottom: 20px;
+}
+main .order-summary .summary-total {
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: right;
+  margin-top: 20px;
+}
+main .order-summary a {
+  text-decoration: none;
+}
+main .order-summary .boton-confirmar {
+  margin: 15px auto;
+  display: flex;
+  justify-content: center;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 50px;
+  background-color: #0465b0;
+  color: #fff;
+  font-size: 1em;
+  font-family: "Montserrat", Arial, sans-serif;
+  cursor: pointer;
+}
+main .order-summary .boton-confirmar:hover {
+  background-color: #03487e;
+  transform: scale(1.1);
 }
 
 footer {

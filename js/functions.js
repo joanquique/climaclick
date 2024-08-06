@@ -126,6 +126,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }
+
+    const itemsSummaryContainer = document.getElementById('items-summary-container');
+    const summaryTotalElement = document.getElementById('summary-total');
+
+    // Obtener los artículos del carrito desde el localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    
+    // Log para verificar que los artículos se cargan correctamente
+    console.log("Artículos en el carrito:", cartItems);
+
+    // Verificar si el carrito está vacío
+    if (cartItems.length === 0) {
+        itemsSummaryContainer.innerHTML = "<p>No hay artículos en tu compra.</p>";
+    } else {
+        let total = 0;
+
+        cartItems.forEach(item => {
+            // Log para verificar cada artículo
+            console.log("Artículo:", item);
+
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('item-summary');
+
+            // Crear el HTML para cada artículo
+            itemElement.innerHTML = `
+                <h3>${item.name}</h3>
+                <p>Cantidad: ${item.quantity}</p>
+                <p>Precio: $${item.price.toFixed(2)}</p>
+                <hr>
+            `;
+
+            // Añadir el artículo al contenedor
+            itemsSummaryContainer.appendChild(itemElement);
+
+            // Calcular el total a pagar
+            total += item.price * item.quantity;
+        });
+
+        // Mostrar el total en el resumen
+        summaryTotalElement.textContent = total.toFixed(2);
+    }
 });
 
 function animateIcon(iconElement, newSrc = null) {

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Regístrate en Climaclick y disfruta de una experiencia de compra personalizada. Crea tu cuenta para acceder a ofertas exclusivas, seguimiento de pedidos y un proceso de compra más rápido y sencillo. ¡Únete a nosotros hoy mismo!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/CARRITO_AZUL_PNG-02.png" type="image/png" alt="favicon">
+    <title>Resumen | Climaclick</title>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="js/functions.js" defer></script>
+    <style>
+        .order-summary {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .item-summary {
+            margin-bottom: 20px;
+        }
+
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .boton-confirmar {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .boton-confirmar:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+<body>
+    <header> <!-- Barra de navegación -->
+        <nav class="busqueda-boton">
+            <ul>
+                <li>
+                    <form>
+                        <input type="text" name="q" placeholder="Filtrar productos...">
+                    </form>
+                </li>
+                <li>
+                    <button class="login" id="loginButton" style="display: none;">Iniciar sesión</button>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <div class="menu__icon-container">
+                <i class="header__icon" id="menu-toggle">
+                    <img id="menu-icon" src="img/menu.svg" alt="Icono Menu" width="30">
+                </i>
+            </div>
+            <ul class="panel-nav">
+                <li class="logo-nav">
+                    <a href="index.html" class="logo-link">
+                        <img class="logo-morl" id="logo" src="img/CLIMACLICK_AZUL.png" alt="logo climaclick">
+                    </a>
+                </li>
+                <li class="boton-nav"><a href="minisplit.html">Minisplit</a></li>
+                <li class="boton-nav"><a href="inverter.html">Inverter</a></li>
+                <li class="boton-nav"><a href="portatil.html">Portátil</a></li>
+                <li class="boton-nav"><a href="vrf.html">VRF</a></li>
+                <li class="boton-nav"><a href="gas_herramientas.html">Gas y Herramientas</a></li>
+            </ul>  
+            <div class="cart__icon-container">
+                <i class="header__icon" id="cart-toggle">
+                    <img id="cart-icon" src="img/shopping-cart.svg" width="30" alt="ícono carrito">
+                </i>
+            </div>      
+        </nav>
+    </header>
+    <main>        
+        <section class="cart cart--container"> <!-- Carrito de compras-->
+            <h2 class="cart__title">CARRITO</h2>
+            <hr>
+            <i id="cart-close"><img src="img/x.svg" class="cart__close-icon" alt="ícono cerrar carrito" width="25"></i> 
+            <div class="cart__item-count-container">
+                <span id="cart-item-count" class="cart__item-count"></span>
+                <span class="cart__item-text">Artículos</span>
+            </div>
+            <div class="cart__total-container">
+                <span class="cart__item-text">Total a pagar: $</span><b><span id="cart-total" class="cart__total"></b></span>
+            </div>
+            <a href="informacion_compra.html" aria-label="Proceder a informacion de compra">
+                <button class="boton-comprar" id="buy-button" style="display: none;">Comprar</button>
+            </a>
+            <div class="cart__item"></div>
+        </section>
+        <section class="menu menu--container"> <!-- Menú a la izquierda (móvil)-->
+            <h2 class="menu__title">MENU</h2>
+            <i id="menu-close"><img src="img/x.svg" class="menu__close-icon" alt="ícono cerrar menú" width="25"></i> 
+            <ul class="no-bullets">
+                <li class="menu-item"><a href="minisplit.html">Minisplit</a></li>
+                <li class="menu-item"><a href="inverter.html">Inverter</a></li>
+                <li class="menu-item"><a href="portatil.html">Portátil</a></li>
+                <li class="menu-item"><a href="vrf.html">VRF</a></li>
+                <li class="menu-item"><a href="gas_herramientas.html">Gas y Herramientas</a></li>
+            </ul>
+        </section>
+        <section class="order-summary">
+            <h2>Resumen de tu Compra</h2>
+            <div id="items-summary-container"></div>
+            <div class="summary-total">
+                <span>Total a pagar: $<span id="summary-total"></span></span>
+            </div>
+            <button class="boton-confirmar">Confirmar Compra</button>
+        </section>
+        
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const itemsSummaryContainer = document.getElementById('items-summary-container');
+                const summaryTotalElement = document.getElementById('summary-total');
+
+                // Obtener los artículos del carrito desde el localStorage
+                const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                
+                // Log para verificar que los artículos se cargan correctamente
+                console.log("Artículos en el carrito:", cartItems);
+
+                // Verificar si el carrito está vacío
+                if (cartItems.length === 0) {
+                    itemsSummaryContainer.innerHTML = "<p>No hay artículos en tu compra.</p>";
+                } else {
+                    let total = 0;
+
+                    cartItems.forEach(item => {
+                        // Log para verificar cada artículo
+                        console.log("Artículo:", item);
+
+                        const itemElement = document.createElement('div');
+                        itemElement.classList.add('item-summary');
+
+                        // Crear el HTML para cada artículo
+                        itemElement.innerHTML = `
+                            <h3>${item.name}</h3>
+                            <p>Cantidad: ${item.quantity}</p>
+                            <p>Precio: $${item.price.toFixed(2)}</p>
+                            <hr>
+                        `;
+
+                        // Añadir el artículo al contenedor
+                        itemsSummaryContainer.appendChild(itemElement);
+
+                        // Calcular el total a pagar
+                        total += item.price * item.quantity;
+                    });
+
+                    // Mostrar el total en el resumen
+                    summaryTotalElement.textContent = total.toFixed(2);
+                }
+            });
+
+
+        </script>
+    </main>
+    <hr>
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html"><img src="img/CLIMACLICK_AZUL.png" alt="Logo Climaclick"></a>
+        </div>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Categorías</h3>
+                <ul>
+                    <li><a href="minisplit.html">Minisplit</a></li>
+                    <li><a href="inverter.html">Inverter</a></li>
+                    <li><a href="portatil.html">Portátil</a></li>
+                    <li><a href="vrf.html">VRF</a></li>
+                    <li><a href="gas_herramientas.html">Gas y Herramientas</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="politicas.html">Políticas</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <p class="address">Schumann 202 Gustavo A. Madero, CDMX</p>
+                <p class="contact">
+                    <img class="icon" src="img/phone-call.svg" alt="ícono teléfono">
+                    <a class="mail" href="tel:525590206366"> (55) 9020-6366 </a> | Lunes - Viernes
+                </p>
+                <p class="contact">
+                    <img class="icon" src="img/mail.svg" alt="ícono correo">
+                    <a class="mail" href="mailto:ventas@climaclick.com.mx">ventas@climaclick.com.mx</a>
+                </p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/climaclick.com.mx" target="_blank"><img src="img/facebook.svg" alt="ícono Facebook" class="social-icon"></a>
+                    <a href="https://www.instagram.com/climaclick.com.mx" target="_blank"><img src="img/instagram.svg" alt="ícono Instagram" class="social-icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2024 Climaclick</p>
+    </footer>
+</body>
+</html>

@@ -50,9 +50,9 @@ app.post("/create_preference", async (req, res) => {
                 },
             ],
             back_urls: {
-                success: "http://localhost:3000",
-                failure: "http://localhost:3000",
-                pending: "http://localhost:3000",
+                success: "http://localhost:3000/resumen_compra.html",
+                failure: "http://localhost:3000/resumen_compra.html",
+                pending: "http://localhost:3000/resumen_compra.html",
             },
             auto_return: "approved",
         };

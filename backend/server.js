@@ -50,9 +50,9 @@ app.post("/create_preference", async (req, res) => {
                 },
             ],
             back_urls: {
-                success: "https://github.com/joanquique",
-                failure: "https://github.com/joanquique",
-                pending: "https://github.com/joanquique",
+                success: "http://localhost:3000",
+                failure: "http://localhost:3000",
+                pending: "http://localhost:3000",
             },
             auto_return: "approved",
         };

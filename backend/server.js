@@ -39,7 +39,7 @@ app.post("/create_preference", async (req, res) => {
                       id: "bank_transfer"
                     }
                   ],
-                installments: 1,
+                installments: 12,
             },
             items: [
                 {

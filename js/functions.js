@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (menuIcon && cartIcon) {
         // Menú
         document.getElementById('menu-toggle').addEventListener('click', () => {
-            console.log("Clic en el icono de menu");
             const menu = document.querySelector('.menu');
             menu.classList.toggle('menu--open');
 
@@ -47,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         document.getElementById('menu-close').addEventListener('click', () => {
-            console.log("Clic en el icono de cerrar menu");
             const menu = document.querySelector('.menu');
             menu.classList.remove('menu--open');
             animateIcon(menuIcon, 'img/menu.svg');
@@ -55,14 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Carrito
         document.getElementById('cart-toggle').addEventListener('click', function() {
-            console.log("Clic en el icono de carrito");
             const cart = document.querySelector('.cart');
             cart.classList.toggle('cart--open');
             animateIcon(cartIcon);
         });
 
         document.getElementById('cart-close').addEventListener('click', function() {
-            console.log("Clic en el icono de cerrar carrito");
             const cart = document.querySelector('.cart');
             cart.classList.remove('cart--open');
             animateIcon(cartIcon);
@@ -80,8 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 animateIcon(cartIcon);
             });
         });
-    } else {
-        console.error('No se encontraron elementos con los IDs especificados.');
     }
     // Cargar el carrito desde localStorage al cargar la página
     loadCartFromLocalStorage();
@@ -126,50 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }
-
-    // Obtener los artículos del carrito desde el localStorage
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    
-    // Log para verificar que los artículos se cargan correctamente
-    console.log("Artículos en el carrito:", cartItems);
-
-    // Verificar si los contenedores existen en el DOM
-    const itemsSummaryContainer = document.getElementById('items-summary-container');
-    const summaryTotalElement = document.getElementById('summary-total');
-
-    if (itemsSummaryContainer && summaryTotalElement) {
-        if (cartItems.length === 0) {
-            itemsSummaryContainer.innerHTML = "<p>No hay artículos en tu compra.</p>";
-        } else {
-            let total = 0;
-
-            cartItems.forEach(item => {
-                // Log para verificar cada artículo
-                console.log("Artículo:", item);
-
-                const itemElement = document.createElement('div');
-                itemElement.classList.add('item-summary');
-
-                // Crear el HTML para cada artículo
-                itemElement.innerHTML = `
-                    <h3>${item.name}</h3>
-                    <p>Cantidad: ${item.quantity}</p>
-                    <p>Precio: $${item.price.toFixed(2)}</p>
-                    <hr>
-                `;
-
-                // Añadir el artículo al contenedor
-                itemsSummaryContainer.appendChild(itemElement);
-
-                // Calcular el total a pagar
-                total += item.price * item.quantity;
-            });
-
-            // Mostrar el total en el resumen
-            summaryTotalElement.textContent = total.toFixed(2);
-        }
-    } 
-
 });
 
 function animateIcon(iconElement, newSrc = null) {
@@ -411,3 +361,52 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
+
+function loadCartForSummary() {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const itemsSummaryContainer = document.getElementById('items-summary-container');
+    const summaryTotalElement = document.getElementById('summary-total');
+    itemsSummaryContainer.innerHTML = '';
+
+    let total = 0;
+
+    cartItems.forEach(item => {
+        // Crear el contenedor del artículo
+        const itemElement = document.createElement('div');
+
+        // Crear el HTML para cada artículo
+        itemElement.innerHTML = `
+            <div class="item-summary">
+                <img class="img-summary" src="${item.imgSrc}" alt="${item.name}">
+                <div class="item-details">
+                    <h3 class="item-name">${item.name}</h3>
+                    <p class="item-quantity">Cantidad: ${item.quantity}</p>
+                    <p class="item-price">Precio: ${item.price}*</p>
+                </div>
+            </div>
+            <hr>
+        `;
+
+        // Añadir el artículo al contenedor
+        itemsSummaryContainer.appendChild(itemElement);
+
+        // Limpiar el precio y convertirlo a número
+            const priceNumber = parseFloat(item.price.replace(/[^0-9.-]+/g,""));
+            
+            // Sumar al total
+            total += priceNumber * item.quantity;
+    });
+
+    // Formatear el total
+    const formattedTotal = new Intl.NumberFormat('es-MX', {
+        style: 'currency',
+        currency: 'MXN'
+    }).format(total);
+
+    // Mostrar el total en el resumen
+    summaryTotalElement.textContent = formattedTotal;
+    
+}
+
+// Llama a la función para cargar el resumen de la compra cuando se cargue la página
+document.addEventListener('DOMContentLoaded', loadCartForSummary);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,15 +46,15 @@
                 <li class="boton-nav"><a href="vrf.html">VRF</a></li>
                 <li class="boton-nav"><a href="gas_herramientas.html">Gas y Herramientas</a></li>
             </ul>  
-            <div class="cart__icon-container">
+            <!-- <div class="cart__icon-container">
                 <i class="header__icon" id="cart-toggle">
                     <img id="cart-icon" src="img/shopping-cart.svg" width="30" alt="ícono carrito">
                 </i>
-            </div>      
+            </div>       -->
         </nav>
     </header>
     <main>        
-        <section class="cart cart--container"> <!-- Carrito de compras-->
+        <!-- <section class="cart cart--container"> 
             <h2 class="cart__title">CARRITO</h2>
             <hr>
             <i id="cart-close"><img src="img/x.svg" class="cart__close-icon" alt="ícono cerrar carrito" width="25"></i> 
@@ -69,7 +69,7 @@
                 <button class="boton-comprar" id="buy-button" style="display: none;">Comprar</button>
             </a>
             <div class="cart__item"></div>
-        </section>
+        </section>-->
         <section class="menu menu--container"> <!-- Menú a la izquierda (móvil)-->
             <h2 class="menu__title">MENU</h2>
             <i id="menu-close"><img src="img/x.svg" class="menu__close-icon" alt="ícono cerrar menú" width="25"></i> 
@@ -85,7 +85,8 @@
             <h2>Resumen de tu Compra</h2>
             <div id="items-summary-container"></div>
             <div class="summary-total">
-                <span>Total a pagar: $<span id="summary-total"></span></span>
+                <p>Total pagado: <span id="summary-total"></span>*</p>
+                <span class="pago-neto">*Precio de contado</span>
             </div>
             <a href="index.html">
                 <button class="boton-confirmar">Seguir comprando</button>

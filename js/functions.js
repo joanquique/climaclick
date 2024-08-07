@@ -369,18 +369,23 @@ function generateOrderNumber() {
 const orderNumber = generateOrderNumber();
 
 function loadCartForSummary() {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    // Declara e inicializa las variables al inicio
     const itemsSummaryContainer = document.getElementById('items-summary-container');
     const summaryTotalElement = document.getElementById('summary-total');
-    itemsSummaryContainer.innerHTML = `<p class="odc">Orden de compra: <b>${orderNumber}</b></p>`;
+
+    // Verifica si el contenedor de resumen de artículos existe
+    if (!itemsSummaryContainer || !summaryTotalElement) {
+        return; // Sale de la función si el contenedor no existe
+    }
+
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    itemsSummaryContainer.innerHTML = `<p class="odc">Orden de compra: <b>${generateOrderNumber()}</b></p>`;
 
     let total = 0;
 
     cartItems.forEach(item => {
-        // Crear el contenedor del artículo
         const itemElement = document.createElement('div');
 
-        // Crear el HTML para cada artículo
         itemElement.innerHTML = `
             <div class="item-summary">
                 <img class="img-summary" src="${item.imgSrc}" alt="${item.name}">
@@ -393,25 +398,18 @@ function loadCartForSummary() {
             <hr>
         `;
 
-        // Añadir el artículo al contenedor
         itemsSummaryContainer.appendChild(itemElement);
 
-        // Limpiar el precio y convertirlo a número
-            const priceNumber = parseFloat(item.price.replace(/[^0-9.-]+/g,""));
-            
-            // Sumar al total
-            total += priceNumber * item.quantity;
+        const priceNumber = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
+        total += priceNumber * item.quantity;
     });
 
-    // Formatear el total
     const formattedTotal = new Intl.NumberFormat('es-MX', {
         style: 'currency',
         currency: 'MXN'
     }).format(total);
 
-    // Mostrar el total en el resumen
     summaryTotalElement.textContent = formattedTotal;
-    
 }
 
 window.addEventListener('beforeunload', function(event) {

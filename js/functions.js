@@ -367,14 +367,12 @@ function generateOrderNumber() {
 }
 
 const orderNumber = generateOrderNumber();
-console.log("Número de compra: ", orderNumber);
-
 
 function loadCartForSummary() {
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const itemsSummaryContainer = document.getElementById('items-summary-container');
     const summaryTotalElement = document.getElementById('summary-total');
-    itemsSummaryContainer.innerHTML = `<p>Orden de compra: ${orderNumber}</p>`;
+    itemsSummaryContainer.innerHTML = `<p class="odc">Orden de compra: <b>${orderNumber}</b></p>`;
 
     let total = 0;
 

@@ -1226,12 +1226,15 @@ main .order-summary {
   max-width: 600px;
   margin: 0 auto;
 }
+main .order-summary h2 {
+  margin-bottom: 5px;
+}
 main .order-summary .item-summary {
   margin-bottom: 20px;
 }
 main .order-summary .summary-total {
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   text-align: right;
   margin: 20px 0 35px;
 }
@@ -1259,6 +1262,11 @@ main #items-summary-container {
   display: flex;
   flex-direction: column;
   gap: 10px; /* Espacio entre los elementos */
+}
+main #items-summary-container .odc {
+  padding: 0;
+  margin-top: 5px;
+  text-align: right;
 }
 main #items-summary-container .item-summary {
   display: flex;
@@ -1309,7 +1317,64 @@ main .summary-total p {
 }
 main .summary-total .pago-neto {
   text-align: left;
-  font-size: 11px;
+  font-size: 12px;
+}
+@media screen and (max-width: 768px) {
+  main .order-summary {
+    padding: 15px;
+  }
+  main #items-summary-container .item-summary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  main #items-summary-container .item-summary .img-summary {
+    width: 65%;
+    height: auto;
+    align-self: center;
+  }
+  main #items-summary-container .item-summary .item-details {
+    width: 100%;
+  }
+  main #items-summary-container .odc {
+    font-size: 16px;
+    text-align: center;
+  }
+  main .summary-total p {
+    text-align: center;
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  main .boton-confirmar {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 480px) {
+  main .order-summary {
+    padding: 10px;
+  }
+  main .order-summary .summary-total {
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: right;
+    margin: 20px 0 25px;
+  }
+  main .order-summary .summary-total p {
+    text-align: center;
+  }
+  main .order-summary .summary-total .pago-neto {
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  main .summary-total {
+    font-size: 1rem;
+  }
+  main .boton-confirmar {
+    font-size: 0.9em;
+    padding: 10px;
+  }
+  main .item-price {
+    font-size: 26px;
+  }
 }
 
 footer {

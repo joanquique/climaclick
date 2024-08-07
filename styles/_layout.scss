@@ -624,6 +624,10 @@ main {
         background-color: #f9f9f9;
         max-width: 600px;
         margin: 0 auto;
+
+        h2 {
+            margin-bottom: 5px;
+        }
         
         .item-summary {
             margin-bottom: 20px;
@@ -631,7 +635,7 @@ main {
         
         .summary-total {
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.2rem;
             text-align: right;
             margin: 20px 0 35px;
         }
@@ -649,6 +653,12 @@ main {
         flex-direction: column;
         gap: 10px; /* Espacio entre los elementos */
     
+        .odc {
+            padding: 0;
+            margin-top: 5px;
+            text-align: right;
+        }
+
         .item-summary {
             display: flex;
             align-items: center;
@@ -703,7 +713,77 @@ main {
         }
         .pago-neto {
             text-align: left;
-            font-size: 11px;
+            font-size: 12px;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .order-summary {
+            padding: 15px;
+        }
+    
+        #items-summary-container {
+            .item-summary {
+                flex-direction: column;
+                align-items: flex-start;
+    
+                .img-summary {
+                    width: 65%;
+                    height: auto;
+                    align-self: center;
+                }
+    
+                .item-details {
+                    width: 100%;
+                }
+            }
+            .odc {
+                font-size: 16px;
+                text-align: center;
+            }
+        }
+    
+        .summary-total {
+            p {
+                text-align: center;
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+        }
+    
+        .boton-confirmar {
+            width: 100%;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        .order-summary {
+            padding: 10px;
+
+            .summary-total {
+                p {
+                    text-align: center;
+                }
+                font-weight: bold;
+                font-size: 1.2rem;
+                text-align: right;
+                margin: 20px 0 25px;
+                .pago-neto {
+                    text-align: center;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    
+        .summary-total {
+            font-size: 1rem;
+        }
+    
+        .boton-confirmar {
+            font-size: 0.9em;
+            padding: 10px;
+        }
+        .item-price {
+            font-size: 26px;
         }
     }
     

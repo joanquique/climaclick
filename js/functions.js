@@ -414,14 +414,14 @@ function loadCartForSummary() {
     
 }
 
-document.querySelector('.boton-confirmar').addEventListener('click', () => {
-    // Limpia el localStorage
-    localStorage.removeItem('cart');
-    
-    // Redirige al usuario al índice
-    window.location.href = 'index.html';
+window.addEventListener('beforeunload', function(event) {
+    // Verifica si la página es la de resumen de compra
+    if (window.location.pathname.includes('resumen_compra.html')) {
+        localStorage.removeItem('cart');
+        event.preventDefault(); // Prevenir la acción por defecto
+        return '¿Seguro que quieres salir de la página? El carrito se vaciará.';
+    }
 });
-
 
 // Llama a la función para cargar el resumen de la compra cuando se cargue la página
 document.addEventListener('DOMContentLoaded', loadCartForSummary);

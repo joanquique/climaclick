@@ -362,11 +362,19 @@ function showSlides(n) {
     dots[slideIndex - 1].className += " active";
 }
 
+function generateOrderNumber() {
+    return 'ORD-' + Date.now(); // Usa el timestamp para crear un número único
+}
+
+const orderNumber = generateOrderNumber();
+console.log("Número de compra: ", orderNumber);
+
+
 function loadCartForSummary() {
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const itemsSummaryContainer = document.getElementById('items-summary-container');
     const summaryTotalElement = document.getElementById('summary-total');
-    itemsSummaryContainer.innerHTML = '';
+    itemsSummaryContainer.innerHTML = `<p>Orden de compra: ${orderNumber}</p>`;
 
     let total = 0;
 
@@ -407,6 +415,15 @@ function loadCartForSummary() {
     summaryTotalElement.textContent = formattedTotal;
     
 }
+
+document.querySelector('.boton-confirmar').addEventListener('click', () => {
+    // Limpia el localStorage
+    localStorage.removeItem('cart');
+    
+    // Redirige al usuario al índice
+    window.location.href = 'index.html';
+});
+
 
 // Llama a la función para cargar el resumen de la compra cuando se cargue la página
 document.addEventListener('DOMContentLoaded', loadCartForSummary);

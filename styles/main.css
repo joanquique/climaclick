@@ -1315,6 +1315,12 @@ main .summary-total p {
   padding-right: 0;
   margin-bottom: 0;
 }
+main .summary-total .info-compra {
+  text-align: center;
+  font-size: 15px;
+  padding-left: 0;
+  margin-bottom: 25px;
+}
 main .summary-total .pago-neto {
   text-align: left;
   font-size: 12px;

@@ -711,6 +711,12 @@ main {
             padding-right: 0;
             margin-bottom: 0;
         }
+        .info-compra {
+            text-align: center;
+            font-size: 15px;
+            padding-left: 0;
+            margin-bottom: 25px;
+        }
         .pago-neto {
             text-align: left;
             font-size: 12px;
@@ -763,6 +769,7 @@ main {
                 p {
                     text-align: center;
                 }
+
                 font-weight: bold;
                 font-size: 1.2rem;
                 text-align: right;

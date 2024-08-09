@@ -1026,9 +1026,6 @@ main .item-design .left-side img.img-item {
   height: auto;
   margin-bottom: 1px;
 }
-main .item-design .left-side:hover {
-  transform: scale(1.1); /* Escala al 110% */
-}
 main .item-design .left-side section.items {
   width: 100%;
   text-align: center; /* Centra el contenido dentro de section */

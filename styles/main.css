@@ -468,7 +468,12 @@ small {
   .menu p {
     margin: 0;
   }
-  .menu .menu-item {
+  .menu a {
+    text-decoration: none;
+    color: #333;
+    transform: scale(1.2);
+  }
+  .menu a .menu-item {
     border-bottom: 1px solid #333;
     display: flex;
     justify-content: left;
@@ -477,11 +482,6 @@ small {
     text-decoration: none;
     font-weight: 500;
     font-size: 20px;
-  }
-  .menu .menu-item a {
-    text-decoration: none;
-    color: #333;
-    transform: scale(1.2);
   }
   .menu__close-icon {
     display: none;

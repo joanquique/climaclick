@@ -409,6 +409,9 @@ main {
                 height: auto;
                 margin-bottom: 1px;
             }
+            &:hover {
+                transform: scale(1.1); /* Escala al 110% */
+            }
     
             section.items {
                 width: 100%;
@@ -563,6 +566,13 @@ main {
             @media screen and (max-width: 600px){
                 width: 75%;
             }
+            .img-item {
+                transition: transform 0.3s ease; /* Asegura una transición suave */
+            }
+            
+            .img-item:hover {
+                transform: scale(1.6); /* Escala al 160% al pasar el puntero */
+            }
         }
 
         .item { // Artículos en productos.html
@@ -576,6 +586,9 @@ main {
                 height: auto;
                 transition: all 0.2s linear;
                 margin: 15px auto;
+                &:hover {
+                    transform: scale(1.6);
+                }
             }
 
             /* Estilos para la descripción del producto */

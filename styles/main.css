@@ -150,9 +150,6 @@ main .items .item .add-to-cart:hover, main .items .item-single .add-to-cart:hove
 main .items .item .btn-link, main .items .item-single .btn-link {
   text-decoration: none;
 }
-main .items .item .img-item:hover, main .items .item-single .img-item:hover {
-  transform: scale(1.6);
-}
 
 main h3, main .head-text-container {
   text-align: center;
@@ -1029,6 +1026,9 @@ main .item-design .left-side img.img-item {
   height: auto;
   margin-bottom: 1px;
 }
+main .item-design .left-side:hover {
+  transform: scale(1.1); /* Escala al 110% */
+}
 main .item-design .left-side section.items {
   width: 100%;
   text-align: center; /* Centra el contenido dentro de section */
@@ -1153,6 +1153,12 @@ main .items .item-single .precio {
     width: 75%;
   }
 }
+main .items .item-single .img-item {
+  transition: transform 0.3s ease; /* Asegura una transición suave */
+}
+main .items .item-single .img-item:hover {
+  transform: scale(1.6); /* Escala al 160% al pasar el puntero */
+}
 main .items .item {
   /* Estilos para la imagen del producto */
   /* Estilos para la descripción del producto */
@@ -1165,6 +1171,9 @@ main .items .item .img-item {
   height: auto;
   transition: all 0.2s linear;
   margin: 15px auto;
+}
+main .items .item .img-item:hover {
+  transform: scale(1.6);
 }
 main .items .item p {
   padding: 20px;

@@ -140,55 +140,73 @@
             </ul>
         </section>
         <script>
-            const mp = new MercadoPago('TEST-1fc34468-9d77-4273-97a4-47badd6351c2', {
-                locale: "es-MX",
-            });
-            const bricksBuilder = mp.bricks();
-            
-            document.getElementById('pay-button').addEventListener('click', async () => {
-                
-                const quantity = document.querySelector("span.cart__item-count").innerText;
-                const name = document.querySelector("div.cart__item").innerText;
-                const total = document.querySelector("span.cart__total").innerText;
-                const formattedTotal = parseFloat(total.replace(/,/g, '').replace('.', ''));
-                const result = (formattedTotal / 100).toFixed(2);
-
+            async function initializeMP() {
                 try {
-                    const orderData = {
-                        title: name,
-                        quantity: quantity,
-                        price: result / quantity,
+                    // Obtener la clave pública del servidor
+                    const response = await fetch("http://localhost:3000/get_public_key");
+                    const data = await response.json();
+                    const publicKey = data.publicKey;
+        
+                    // Inicializar MercadoPago con la clave pública obtenida
+                    const mp = new MercadoPago(publicKey, {
+                        locale: "es-MX",
+                    });
+                    const bricksBuilder = mp.bricks();
+        
+                    document.getElementById('pay-button').addEventListener('click', async () => {
+                        
+                        const quantity = document.querySelector("span.cart__item-count").innerText;
+                        const name = document.querySelector("div.cart__item").innerText;
+                        const total = document.querySelector("span.cart__total").innerText;
+                        const formattedTotal = parseFloat(total.replace(/,/g, '').replace('.', ''));
+                        const result = (formattedTotal / 100).toFixed(2);
+        
+                        try {
+                            const orderData = {
+                                title: name,
+                                quantity: quantity,
+                                price: result / quantity,
+                            };
+                        
+                            const response = await fetch("http://localhost:3000/create_preference", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify(orderData),
+                            });
+                        
+                            const preference = await response.json()
+                            createCheckoutButton(preference.id);
+                        
+                        } catch (error) {
+                            alert("error: :(");
+                        }
+                    });
+        
+                    const createCheckoutButton = (preferenceId) => {
+                        const bricksBuilder = mp.bricks();
+        
+                        const renderComponent = async () => {
+                            if(window.checkoutButton) window.checkoutButton.unmount();
+                            await bricksBuilder.create("wallet", "wallet_container", {
+                                initialization: {
+                                    preferenceId: preferenceId,
+                                },
+                            });
+                        }
+                        renderComponent();
                     };
-                
-                    const response = await fetch("http://localhost:3000/create_preference", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(orderData),
-                    });
-                
-                    const preference = await response.json()
-                    createCheckoutButton(preference.id);
-                
-                } catch (error){
-                    alert("error: :(");
+        
+                } catch (error) {
+                    console.error("Error al obtener la clave pública:", error);
                 }
-            });
-            const createCheckoutButton = (preferenceId) => {
-                const bricksBuilder = mp.bricks();
-
-                const renderComponent = async () => {
-                    if(window.checkoutButton) window.checkoutButton.unmount();
-                    await bricksBuilder.create("wallet", "wallet_container", {
-                        initialization: {
-                            preferenceId: preferenceId,
-                        },
-                    });
-                }
-                renderComponent();
-            };
+            }
+        
+            // Llamar a la función para inicializar MercadoPago
+            initializeMP();
         </script>
+        
     </main>
     <hr>
     <footer>

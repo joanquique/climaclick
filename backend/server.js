@@ -3,12 +3,26 @@ import cors from "cors"
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+let publicKey;
+let privateKey;
+
+if (process.env.MODE === 'production') {
+  publicKey = process.env.PROD_PUBLIC_KEY;
+  privateKey = process.env.PROD_PRIVATE_KEY;
+} else if (process.env.MODE === 'test') {
+  publicKey = process.env.TEST_PUBLIC_KEY;
+  privateKey = process.env.TEST_PRIVATE_KEY;
+}
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from 'mercadopago';
 // Agrega credenciales
 const client = new MercadoPagoConfig({ accessToken: 
-  'TEST-3105584100759399-073019-82f63418d8f4c2fc5172aabe0ebdbb4a-1855750645' 
+  privateKey 
 });
 
 const app = express();
@@ -74,4 +88,10 @@ app.post("/create_preference", async (req, res) => {
 // Iniciar el servidor
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
+});
+
+// Enviar public_key al cliente
+app.get('/get_public_key', (req, res) => {
+  const publicKey = process.env.MODE === 'production' ? process.env.PROD_PUBLIC_KEY : process.env.TEST_PUBLIC_KEY;
+  res.json({ publicKey });
 });

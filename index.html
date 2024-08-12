@@ -11,6 +11,7 @@
     <link rel="icon" href="img/CARRITO_AZUL_PNG-02.png" type="image/png" alt="favicon">
     <title>Climaclick | Aire Acondicionado</title>
     <script src="js/functions.js" defer></script>
+    <script src="js/modal.js" defer></script>
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
@@ -52,6 +53,23 @@
             </div>      
         </nav>
     </header>
+    <div class="modal" id="modal"> <!-- Modal -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p class="text-sign-in">Información de Contacto</p>
+            <form id="loginForm">
+                <!-- Campos de login -->
+                <input type="email" id="email" placeholder="Correo electrónico">
+                <input type="password" id="password" placeholder="Contraseña">
+                <div class="checkbox">
+                    <input type="checkbox">  Mantener sesión iniciada
+                </div>
+                <button type="submit" class="submit">Iniciar sesión</button>
+            </form>
+            <p class="text-sign-up">¿No tienes una cuenta? <a href="sign-up.html" id="registerLink">Regístrate aquí</a></p>
+            <small>&copy; 2024 Climaclick</small>
+        </div>
+    </div>
     <main> <!-- Contenido principal -->
         <div class="banner">
         </div>
@@ -166,7 +184,7 @@
         <a href="https://www.google.com.mx/maps/place/climaclick/@19.4686753,-99.1361966,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f9dad5fb51b5:0x7862b831f3e1d71!8m2!3d19.4686753!4d-99.1336217!16s%2Fg%2F11y655p118?entry=ttu" target="_blank">
             <div class="banner-marcas"></div>
         </a>
-        <div class="banner-instalacion">
+        <div class="banner-instalacion" id="contacto">
         </div>
         <br>
         <!-- <section class="meses-container"> -->

@@ -56,6 +56,7 @@ body {
     height: auto;
     padding: 16rem 0;
     width: 100%;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 600px){
@@ -465,6 +466,7 @@ main {
             display: flex;
             flex-direction: column;
             align-items: center; /* Centra los elementos horizontalmente */
+            justify-content: center;
     
             span.text-archivo-black {
                 color: #2599e8;
@@ -896,6 +898,11 @@ footer {
                 .mail {
                     color: #000; /* Color de texto secundario */
                     text-decoration: none;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #000;
                 }
             }
     

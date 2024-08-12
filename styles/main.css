@@ -631,7 +631,7 @@ body {
 .banner {
   background: url("../img/BANNER.webp") center/cover;
   height: 12.5rem;
-  padding: 9rem 0;
+  padding: 7rem 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -910,6 +910,23 @@ main .container {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+main .container h2 {
+  margin-bottom: 5px;
+}
+main .container p {
+  margin-top: 0;
+  padding-right: 0;
+  text-align: center;
+}
+main .container .campos {
+  margin-bottom: 15px;
+  font-size: 12px;
+  font-weight: 600;
+}
+main .container .asterisco {
+  color: red;
+  font-size: 16px;
 }
 main .container a {
   text-decoration: none;

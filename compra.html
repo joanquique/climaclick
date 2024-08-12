@@ -167,7 +167,7 @@
             async function initializeMP() {
                 try {
                     // Obtener la clave pública del servidor
-                    const response = await fetch("http://89.116.212.196:3000/get_public_key");
+                    const response = await fetch("http://localhost:3000/get_public_key");
                     const data = await response.json();
                     const publicKey = data.publicKey;
         
@@ -192,7 +192,7 @@
                                 price: result / quantity,
                             };
                         
-                            const response = await fetch("http://89.116.212.196:3000/create_preference", {
+                            const response = await fetch("http://localhost:3000/create_preference", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json",

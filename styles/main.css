@@ -74,7 +74,7 @@
     display: inline;
   }
 }
-main .order-summary .boton-confirmar, main .items .item .boton-ficha, main .items .item .boton-info, main .boton-seguir-pago, .cart a .boton-comprar, .submit, .login, main .items .item .add-to-cart, main .items .item-single .add-to-cart {
+main .order-summary .boton-confirmar, main .items .item .boton-ficha, main .items .item .boton-info, main .boton-seguir-pago, .cart a .boton-comprar, .login, main .items .item .add-to-cart, main .items .item-single .add-to-cart {
   transition: all 0.2s linear;
 }
 
@@ -221,6 +221,52 @@ main h3, main .head-text-container {
   width: 80%;
   max-width: 400px;
   border-radius: 20px;
+  position: relative;
+  top: 25%;
+  transform: translateY(-25%);
+}
+.modal-content p {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content p .icon {
+  width: 20px;
+  margin-right: 10px;
+  filter: invert(0);
+}
+.modal-content p .mail {
+  color: #000; /* Color de texto secundario */
+  text-decoration: none;
+}
+.modal-content p a {
+  text-decoration: none;
+  color: #000;
+}
+.modal-content .social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.modal-content .social-icons .social-icon {
+  width: 20px;
+  margin-right: 10px;
+  filter: invert(0);
+  transition: transform 0.3s ease;
+}
+.modal-content .social-icons .social-icon:hover {
+  transform: scale(1.2);
+}
+@media screen and (max-width: 400px) {
+  .modal-content p {
+    padding: 0;
+  }
+  .modal-content .text-sign-in {
+    margin: 20px 0;
+  }
 }
 
 #email, #password {
@@ -234,11 +280,6 @@ main h3, main .head-text-container {
   text-align: center;
 }
 
-.checkbox {
-  padding: 15px;
-  text-align: center;
-}
-
 .terms {
   padding: 0 5% 5%;
   text-align: justify;
@@ -248,32 +289,11 @@ main h3, main .head-text-container {
   color: #000;
 }
 
-.submit {
-  padding: 8px 12px;
-  border: none;
-  width: 400px;
-  border-radius: 50px;
-  background-color: #0465b0;
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  margin: 20px auto 30px;
-  display: block;
-  text-align: center;
-}
-.submit:hover {
-  background-color: #03487e;
-  scale: 1.1;
-}
-
-.text-sign-up, .text-sign-in {
+.text-sign-in {
   margin: 10px auto;
   display: block;
   text-align: center;
   text-decoration: none;
-}
-
-.text-sign-in {
   font-weight: 600;
   font-size: 20px;
   padding: 20px;
@@ -939,9 +959,10 @@ main .container h2 {
   margin-bottom: 5px;
 }
 main .container p {
-  margin-top: 0;
+  margin-top: 5px;
   padding-right: 0;
   text-align: center;
+  margin-bottom: 0;
 }
 main .container .campos {
   margin-bottom: 15px;

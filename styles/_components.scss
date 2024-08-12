@@ -54,7 +54,60 @@
     border: 1px solid #888;
     width: 80%;
     max-width: 400px;
-    border-radius: 20px;    
+    border-radius: 20px;
+    position: relative;
+    top: 25%;
+    transform: translateY(-25%); // Centra el modal verticalmente
+
+    p {
+        margin: 5px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .icon {
+            width: 20px;
+            margin-right: 10px;
+            filter: invert(0);
+        }
+
+        .mail {
+            color: #000; /* Color de texto secundario */
+            text-decoration: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+    }
+    .social-icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        .social-icon {
+            width: 20px;
+            margin-right: 10px;
+            filter: invert(0);
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+    @media screen and (max-width: 400px) {
+        p {
+            padding: 0;
+        }
+
+        .text-sign-in {
+            margin: 20px 0;
+        }
+    }
 }   
 
 // Cuadros de correo y contraseña
@@ -69,11 +122,6 @@
     text-align: center;
 }
 
-.checkbox{
-    padding: 15px;
-    text-align: center;
-}
-
 .terms { // Terminos y condiciones
     padding: 0 5% 5%;
     text-align: justify;
@@ -83,35 +131,12 @@
     }
 }
 
-// Botón de inicio de sesión dentro de modal
-.submit {
-    padding: 8px 12px;
-    border: none;
-    width: 400px;
-    border-radius: 50px;
-    background-color: $color-primario;
-    color: $color-secundario;
-    font-size: 14px;
-    cursor: pointer;
-    margin: 20px auto 30px; 
-    display: block; 
-    text-align: center;
-    @extend %transition-button;
-    &:hover {
-        background-color: darken($color-primario, 10%);
-        scale: 1.1;
-    }
-}
-
 // Textos de modal
-.text-sign-up, .text-sign-in {
+.text-sign-in {
     margin: 10px auto; // Centrar horizontalmente 
     display: block; 
     text-align: center;
     text-decoration: none;
-}
-
-.text-sign-in {
     font-weight: 600;
     font-size: 20px;
     padding: 20px;

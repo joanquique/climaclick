@@ -377,10 +377,15 @@ small { // Pie de pagina de modal copyright
     position: relative;
     width: 500px;
     margin: 0 auto 10px;
+    overflow: hidden;
 }
 
 .mySlides {
     display: none;
+}
+
+.active {
+    display: block; /* Muestra sólo la imagen activa */
 }
 
 .img-container {

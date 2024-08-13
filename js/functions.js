@@ -370,6 +370,58 @@ function showSlides(n) {
     dots[slideIndex - 1].className += " active";
 }
 
+// Integración del deslizamiento táctil
+document.addEventListener('DOMContentLoaded', function() {
+    let xStart = null; // Coordenada inicial X del toque
+    let yStart = null; // Coordenada inicial Y del toque
+
+    const slideshowContainer = document.querySelector('.slideshow-container');
+
+    // Verifica si el slideshowContainer existe antes de agregar eventos
+    if (slideshowContainer) {
+        // Función para manejar el toque inicial
+        function handleTouchStart(evt) {
+            xStart = evt.touches[0].clientX;
+            yStart = evt.touches[0].clientY;
+        }
+
+        // Función para manejar el movimiento del toque
+        function handleTouchMove(evt) {
+            if (!xStart || !yStart) {
+                return;
+            }
+
+            let xEnd = evt.touches[0].clientX;
+            let yEnd = evt.touches[0].clientY;
+
+            let xDiff = xStart - xEnd;
+            let yDiff = yStart - yEnd;
+
+            // Detectar movimiento horizontal
+            if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                if (xDiff > 0) {
+                    // Deslizó hacia la izquierda
+                    plusSlides(1);
+                } else {
+                    // Deslizó hacia la derecha
+                    plusSlides(-1);
+                }
+            }
+
+            // Resetear los valores de inicio
+            xStart = null;
+            yStart = null;
+        }
+
+        // Asignar eventos de toque al contenedor del slideshow
+        slideshowContainer.addEventListener('touchstart', handleTouchStart, false);
+        slideshowContainer.addEventListener('touchmove', handleTouchMove, false);
+    }
+});
+
+
+
+// Generar orden de compra
 function generateOrderNumber() {
     return 'ORD-' + Date.now(); // Usa el timestamp para crear un número único
 }
@@ -432,20 +484,33 @@ window.addEventListener('beforeunload', function(event) {
 // Llama a la función para cargar el resumen de la compra cuando se cargue la página
 document.addEventListener('DOMContentLoaded', loadCartForSummary);
 
-document.querySelectorAll('.img-container').forEach(container => {
-    const img = container.querySelector('.img-item');
+// Script de efecto de lupa en artículo individual
+document.addEventListener('DOMContentLoaded', () => {
+    const containers = document.querySelectorAll('.img-container');
 
-    container.addEventListener('mousemove', (e) => {
-        const rect = container.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const xPercent = (x / container.offsetWidth) * 100;
-        const yPercent = (y / container.offsetHeight) * 100;
-        
-        img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-    });
+    // Verifica si hay elementos con la clase 'img-container' antes de aplicar el efecto
+    if (containers.length > 0) {
+        containers.forEach(container => {
+            const img = container.querySelector('.img-item');
 
-    container.addEventListener('mouseleave', () => {
-        img.style.transformOrigin = 'center center';
-    });
+            // Verifica si el elemento img-item existe dentro de la img-container
+            if (img) {
+                container.addEventListener('mousemove', (e) => {
+                    const rect = container.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const xPercent = (x / container.offsetWidth) * 100;
+                    const yPercent = (y / container.offsetHeight) * 100;
+
+                    img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+                    img.style.transform = 'scale(2)'; // Aplica la escala
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    img.style.transformOrigin = 'center center';
+                    img.style.transform = 'scale(1)'; // Reestablece la escala
+                });
+            }
+        });
+    }
 });

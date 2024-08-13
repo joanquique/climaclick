@@ -532,10 +532,15 @@ small {
   position: relative;
   width: 500px;
   margin: 0 auto 10px;
+  overflow: hidden;
 }
 
 .mySlides {
   display: none;
+}
+
+.active {
+  display: block; /* Muestra sólo la imagen activa */
 }
 
 .img-container {
@@ -1384,6 +1389,7 @@ main .summary-total .pago-neto {
 @media screen and (max-width: 480px) {
   main .order-summary {
     padding: 10px;
+    margin: 18px;
   }
   main .order-summary .summary-total {
     font-weight: bold;

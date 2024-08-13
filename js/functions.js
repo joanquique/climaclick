@@ -120,6 +120,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }
+    // Selecciona todos los botones con la clase 'add-to-cart'
+    const botones = document.querySelectorAll('.add-to-cart');
+    
+    // Itera sobre cada botón y agrega el event listener
+    botones.forEach(boton => {
+        boton.addEventListener('click', () => {
+            showNotification(); // Mostrar notificación solo al agregar al carrito
+        });
+    });
 });
 
 function animateIcon(iconElement, newSrc = null) {
@@ -197,6 +206,7 @@ function addToCart(name, price, imgSrc, quantity = 1, updateLocalStorage = true)
         incrementButton.classList.add('cart__quantity-increment');
         incrementButton.addEventListener('click', () => {
             updateCartItemQuantity(cartItem, 1);
+            showNotification();
         });
         quantityControls.appendChild(incrementButton);
         cartItem.appendChild(quantityControls);
@@ -211,9 +221,7 @@ function addToCart(name, price, imgSrc, quantity = 1, updateLocalStorage = true)
     if (updateLocalStorage) {
         saveCartToLocalStorage(cartItems);
     }
-
     updateCartItemCount(quantity);
-    showNotification(); // Mostrar notificación solo al agregar al carrito
 }
 
 function showNotification() {

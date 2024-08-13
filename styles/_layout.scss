@@ -427,11 +427,13 @@ main {
                     line-height: 1.6;
                 }
             }
-    
+            
+            // Imagen en artíulo individual
             img.img-item {
                 width: 100%;
                 height: auto;
                 margin-bottom: 1px;
+                animation: slideIn 0.8s ease-out;
             }
     
             section.items {
@@ -529,11 +531,7 @@ main {
             transform: translateY(0);
         }
     }
-    
-    .img-item {
-        padding: 0;
-        animation: slideIn 0.8s ease-out forwards; /* forwards mantiene el estado final de la animación */
-    }
+
     
     .notification {
         position: fixed;
@@ -588,13 +586,6 @@ main {
             @media screen and (max-width: 600px){
                 width: 75%;
             }
-            .img-item {
-                transition: transform 0.3s ease; /* Asegura una transición suave */
-            }
-            
-            .img-item:hover {
-                transform: scale(1.6); /* Escala al 160% al pasar el puntero */
-            }
         }
 
         .item { // Artículos en productos.html
@@ -604,10 +595,11 @@ main {
             .img-item {
                 width: 100%;
                 max-width: 15rem;
-                //border-radius: 35px;
                 height: auto;
                 transition: all 0.2s linear;
                 margin: 15px auto;
+                padding: 0;
+                animation: slideIn 0.8s ease-out;
                 &:hover {
                     transform: scale(1.6);
                 }

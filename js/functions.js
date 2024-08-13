@@ -431,3 +431,21 @@ window.addEventListener('beforeunload', function(event) {
 
 // Llama a la función para cargar el resumen de la compra cuando se cargue la página
 document.addEventListener('DOMContentLoaded', loadCartForSummary);
+
+document.querySelectorAll('.img-container').forEach(container => {
+    const img = container.querySelector('.img-item');
+
+    container.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const xPercent = (x / container.offsetWidth) * 100;
+        const yPercent = (y / container.offsetHeight) * 100;
+        
+        img.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        img.style.transformOrigin = 'center center';
+    });
+});

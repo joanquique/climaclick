@@ -14,25 +14,7 @@
     }
 }
 
-// Estilos del botón de iniciar sesión
-.login {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 500px;
-    background-color: #145483;
-    color: $color-secundario;
-    font-size: 14px;
-    font-family: $font-family;
-    cursor: pointer;
-    @extend %transition-button;
-
-    &:hover {
-        background-color: darken($color-primario, 10%);
-        scale: 1.1;
-    }
-}
-
-// Estilos del modal de login
+// Estilos del modal contacto
 .modal {
     display: none; 
     position: fixed;
@@ -46,7 +28,7 @@
     animation: slideIn 0.5s ease forwards;
 }
 
-// Contenido del modal 
+// Contenido del modal contacto
 .modal-content {
     background-color: #fefefe;
     margin: 10% auto;
@@ -108,18 +90,6 @@
             margin: 20px 0;
         }
     }
-}   
-
-// Cuadros de correo y contraseña
-#email, #password {
-    padding: 8px;
-    border: 2px solid $color-primario;
-    border-radius: 50px;
-    width: 250px;
-    font-size: 14px;
-    margin: 15px auto;
-    display: block; 
-    text-align: center;
 }
 
 .terms { // Terminos y condiciones
@@ -408,11 +378,25 @@ small { // Pie de pagina de modal copyright
     width: 500px;
     margin: 0 auto 10px;
 }
-  
+
 .mySlides {
     display: none;
 }
-  
+
+.img-container {
+    position: relative;
+    overflow: hidden;
+    
+    .img-item {
+        width: 100%;
+        transition: transform 0.2s ease-in-out;
+        cursor: zoom-in;
+    }
+    &:hover .img-item {
+        transform: scale(2.8); /* Aumenta el tamaño de la imagen al pasar el mouse */
+    }
+}
+
 img {
     vertical-align: middle;
 }
@@ -489,28 +473,3 @@ img {
         width: 100%;
     }
 }
-
-// Estilos del modal 
-.modal {
-    display: none; 
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-    animation: slideIn 0.5s ease forwards;
-}
-
-// Contenido del modal
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    border-radius: 20px;    
-} 

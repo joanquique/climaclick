@@ -2,7 +2,7 @@
 window.addEventListener('scroll', function() {
     var header = document.querySelector('header');
     var scrollPosition = window.scrollY;
-    scrollPosition > 50 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
+    scrollPosition > 1 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
 });
 
 // Función para filtrar los productos

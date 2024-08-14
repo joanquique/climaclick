@@ -604,19 +604,54 @@ img {
 }
 
 /* Fading animation */
-.fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@keyframes fade {
+@keyframes slideInFromLeft {
   from {
-    opacity: 0.4;
+    transform: translateX(-100%);
   }
   to {
-    opacity: 1;
+    transform: translateX(0);
   }
 }
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slideOutToLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+.mySlides.slide-in-left {
+  animation: slideInFromLeft 0.6s ease-out;
+}
+
+.mySlides.slide-in-right {
+  animation: slideInFromRight 0.6s ease-out;
+}
+
+.mySlides.slide-out-left {
+  animation: slideOutToLeft 0.6s ease-out;
+}
+
+.mySlides.slide-out-right {
+  animation: slideOutToRight 0.6s ease-out;
+}
+
 @media only screen and (max-width: 768px) {
   .prev, .next {
     font-size: 12px;
@@ -1056,7 +1091,6 @@ main .item-design .left-side img.img-item {
   width: 100%;
   height: auto;
   margin-bottom: 1px;
-  animation: slideIn 0.8s ease-out;
   padding-left: 0;
 }
 main .item-design .left-side section.items {

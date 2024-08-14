@@ -1,9 +1,18 @@
 //Efecto de header
 window.addEventListener('scroll', function() {
     var header = document.querySelector('header');
+    var mainContent = document.querySelector('main'); // Asegúrate de que este selector apunte al contenido principal
     var scrollPosition = window.scrollY;
-    scrollPosition > 1 ? header.classList.add('scrolled') : header.classList.remove('scrolled');
+
+    if (scrollPosition > 1) {
+        header.classList.add('scrolled');
+        mainContent.style.marginTop = header.offsetHeight + 'px'; // Añadir margen superior al contenido
+    } else {
+        header.classList.remove('scrolled');
+        mainContent.style.marginTop = '0px'; // Restablecer margen superior al contenido
+    }
 });
+
 
 // Función para filtrar los productos
 function filtrarProductos() {

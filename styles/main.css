@@ -421,7 +421,7 @@ small {
   text-align: center;
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 901px) {
   .menu {
     display: none;
   }
@@ -903,7 +903,6 @@ header.scrolled {
   position: fixed; /* Fija el header en la parte superior */
   top: 0; /* Asegura que esté al principio de la ventana */
   left: 0; /* Asegura que esté a la izquierda de la ventana */
-  width: 100%; /* Opcional: asegura que el header ocupe toda la anchura */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para resaltar el header */
   transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
 }

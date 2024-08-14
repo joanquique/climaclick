@@ -337,38 +337,64 @@ window.onresize = function() {
     ajustarContenidoSegunDispositivo(); // Ajustar contenido al cambiar el tamaño de la ventana
 }
 
-//Script de carrusel de imágenes
+// Efecto de slide en carrusel de imágenes
 let slideIndex = 1;
-showSlides(slideIndex);
+let previousIndex = 1;
 
 function plusSlides(n) {
     let slides = document.getElementsByClassName("mySlides");
     if (slides.length === 0) return; // Verificar si hay elementos de carrusel
-    showSlides(slideIndex += n);
+
+    previousIndex = slideIndex;
+    slideIndex += n;
+
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    if (slideIndex < 1) { slideIndex = slides.length; }
+
+    showSlides(slideIndex, n);
 }
 
 function currentSlide(n) {
     let slides = document.getElementsByClassName("mySlides");
     if (slides.length === 0) return; // Verificar si hay elementos de carrusel
-    showSlides(slideIndex = n);
+
+    previousIndex = slideIndex;
+    slideIndex = n;
+
+    showSlides(slideIndex, slideIndex - previousIndex);
 }
 
-function showSlides(n) {
+function showSlides(n, direction) {
     let slides = document.getElementsByClassName("mySlides");
     let dots = document.getElementsByClassName("dot");
     if (slides.length === 0 || dots.length === 0) return; // Verificar si hay elementos de carrusel
 
-    if (n > slides.length) { slideIndex = 1 }
-    if (n < 1) { slideIndex = slides.length }
+    // Eliminar todas las clases de animación antes de mostrar la siguiente
     for (let i = 0; i < slides.length; i++) {
+        slides[i].className = slides[i].className.replace(/slide-(in|out)-(left|right)/g, "");
         slides[i].style.display = "none";
     }
+
+    // Determinar la dirección de la animación
+    if (direction > 0) { // Deslizar hacia la izquierda
+        slides[previousIndex - 1].classList.add("slide-out-left");
+        slides[slideIndex - 1].classList.add("slide-in-right");
+    } else if (direction < 0) { // Deslizar hacia la derecha
+        slides[previousIndex - 1].classList.add("slide-out-right");
+        slides[slideIndex - 1].classList.add("slide-in-left");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+
+    // Actualizar las clases de los puntos (dots)
     for (let i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
-    slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
+
+// Inicializar la primera diapositiva
+showSlides(slideIndex);
 
 // Integración del deslizamiento táctil
 document.addEventListener('DOMContentLoaded', function() {
@@ -418,7 +444,6 @@ document.addEventListener('DOMContentLoaded', function() {
         slideshowContainer.addEventListener('touchmove', handleTouchMove, false);
     }
 });
-
 
 
 // Generar orden de compra

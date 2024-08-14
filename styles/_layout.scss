@@ -134,7 +134,7 @@ header {
     z-index: 1000;
     background-color: #fff;
     color: $color-secundario;
-    padding: 15px 0 10px 0;
+    padding: 15px 0 15px;
     height: auto;
     width: 100%; /* Asegura que el header ocupe toda la anchura */
 
@@ -197,7 +197,6 @@ header {
     }
 
     .logo-link {
-        padding-left: 36px; /* Elimina padding */
         border: none; /* Sin bordes */
         border-radius: 0; /* Sin bordes redondeados */
         background-color: transparent; /* Fondo transparente */

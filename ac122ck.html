@@ -19,13 +19,12 @@
         <nav class="busqueda-boton">
             <ul>
                 <li>
-                    <button id="toggle-filter" class="filter-btn">Filtrar</button>
-                    <form id="filter-form" class="hidden-input">
+                    <form>
                         <input type="text" name="q" placeholder="Filtrar productos...">
                     </form>
                 </li>
             </ul>
-        </nav> 
+        </nav>s 
         <nav>
             <div class="menu__icon-container">
                 <i class="header__icon" id="menu-toggle">
@@ -46,6 +45,7 @@
             </ul>  
             <div class="cart__icon-container">
                 <i class="header__icon" id="cart-toggle">
+                    <span id="cart-count" class="cart__count">0</span> <!-- Badge del contador -->
                     <img id="cart-icon" src="img/shopping-cart.svg" width="30" alt="ícono carrito">
                 </i>
             </div>      

@@ -410,6 +410,35 @@ small {
   transform-origin: center center;
 }
 
+.cart__icon-container {
+  position: relative;
+}
+.cart__icon-container .cart__count {
+  position: absolute;
+  top: -9px;
+  right: 18px;
+  background-color: #0465b0;
+  color: white;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .cart__icon-container .cart__count {
+    top: 6px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+}
 .cart__item-text,
 .cart__item-count {
   font-weight: 600;

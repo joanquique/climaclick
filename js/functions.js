@@ -282,9 +282,11 @@ function updateCartItemQuantity(cartItem, change) {
 
 function updateCartItemCount(change) {
     const totalItemCountElement = document.getElementById('cart-item-count');
+    const totalItemCountBadge = document.getElementById('cart-count');
     let currentTotal = parseInt(totalItemCountElement.textContent) || 0; // Inicializa en 0 si no hay valor
     currentTotal += change;
     totalItemCountElement.textContent = currentTotal;
+    totalItemCountBadge.textContent = currentTotal;
     totalItemCountElement.style.display = currentTotal > 0 ? 'inline-block' : 'none'; // Mostrar el contador solo si hay artículos en el carrito
     verificarCarrito(); // Verificar la cantidad de artículos en el carrito
     updateCartTotal();
@@ -309,11 +311,14 @@ function verificarCarrito() {
     const totalItemCountElement = document.getElementById('cart-item-count');
     const itemCount = parseInt(totalItemCountElement.textContent) || 0;
     const buyButton = document.getElementById('buy-button');
+    const countBadge = document.getElementById('cart-count');
     
     if (itemCount > 0) {
         buyButton.style.display = 'block';
+        countBadge.style.display = 'block';
     } else {
         buyButton.style.display = 'none';
+        countBadge.style.display = 'none';
     }
 }
 

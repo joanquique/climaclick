@@ -243,6 +243,37 @@ small { // Pie de pagina de modal copyright
     transition: transform 0.3s ease; // Transición solo para la transformación (escala)
     transform-origin: center center;
 }
+.cart__icon-container {
+    position: relative; // Necesario para posicionar el badge correctamente
+
+    .cart__count {
+        position: absolute;
+        top: -9px;
+        right: 18px;    
+        background-color: $color-primario;
+        color: white;
+        border-radius: 50%; // Asegura que el badge sea un círculo
+        padding: 0; // Remueve el padding para evitar que afecte la forma
+        font-size: 12px;
+        font-weight: bold;
+        display: inline-block;
+        width: 20px; // Asegura que el ancho y alto sean iguales
+        height: 20px; // Asegura que el ancho y alto sean iguales
+        line-height: 20px; // Centra verticalmente el texto dentro del círculo
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .cart__icon-container .cart__count {
+        top: 6px;
+        right: 10px; // Ajusta para pantallas aún más pequeñas
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+    }
+}
+
 .cart__item-text,
 .cart__item-count {
     font-weight: 600;

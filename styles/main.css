@@ -172,45 +172,17 @@ main h3, main .head-text-container {
     margin-right: 0;
   }
 }
-.filter-btn,
-input[type=text] {
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-family: "Montserrat", Arial, sans-serif;
-  font-size: 14px;
-  transition: width 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+.busqueda-boton {
+  padding-bottom: 10px;
 }
-
-.filter-btn {
-  background-color: #0465b0;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  width: 100px;
-  text-align: center;
-}
-.filter-btn:hover {
-  background-color: #03487e;
-}
-.filter-btn.hidden {
-  display: none;
-}
-
-input[type=text] {
-  width: 0;
-  opacity: 0;
-  display: none;
-}
-
-.filter-btn.transformed ~ #filter-form input[type=text] {
-  width: 200px;
-  opacity: 1;
-  display: inline-block;
-  border: 1px solid #0465b0;
-  background-color: #fff;
+.busqueda-boton form input[type=text] {
   padding: 10px;
-  margin: 0;
+  border: 1px solid #0465b0;
+  border-radius: 20px;
+  margin-right: 10px;
+  width: 200px;
+  font-size: 14px;
+  font-family: "Montserrat", Arial, sans-serif;
 }
 
 .modal {

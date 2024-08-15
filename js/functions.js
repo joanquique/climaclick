@@ -39,23 +39,6 @@ document.querySelector('input[name="q"]').addEventListener('input', function() {
     filtrarProductos();
 });
 
-document.getElementById('toggle-filter').addEventListener('click', function() {
-    var button = this;
-    var form = document.getElementById('filter-form');
-    var input = form.querySelector('input[name="q"]');
-
-    if (!button.classList.contains('transformed')) {
-        button.classList.add('transformed');
-        form.style.display = 'inline-block';
-        input.focus(); // Hacer foco en el input cuando se transforme
-
-        // Después de la transformación, ocultar el botón
-        setTimeout(function() {
-            button.classList.add('hidden');
-        }, 300); // Espera la duración de la animación para ocultarlo
-    }
-});
-
 // Funciones de carrito de compras
 document.addEventListener('DOMContentLoaded', function() {
     const menuIcon = document.getElementById('menu-icon');

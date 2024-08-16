@@ -104,7 +104,7 @@
                         Al hacer clic, aceptas los <a href="politicas.html"><b>Términos y Condiciones</b></a> y las <b>Políticas de Privacidad de Datos Personales</b></a>.
                     </label>
                 </div> 
-                <button class="boton-seguir-pago" id="pay-button" type="button">Proceder al pago</button>           
+                <button class="boton-seguir-pago" id="pay-button" type="submit">Proceder al pago</button>           
                 <div id="wallet_container"></div>
             </div>
         </div>
@@ -137,6 +137,7 @@
             </ul>
         </section>
         <script>
+            // Mercado Pago
             async function initializeMP() {
                 try {
                     // Obtener la clave pública del servidor
@@ -202,8 +203,35 @@
         
             // Llamar a la función para inicializar MercadoPago
             initializeMP();
+
+            // Perfit
+            document.getElementById('pay-button').addEventListener('click', function() {
+                event.preventDefault(); // Previene el envío del formulario por defecto
+                const data = {
+                    email: document.getElementById('correo').value,
+                    first_name: document.getElementById('nombre').value,
+                    phone: document.getElementById('telefono').value
+                };
+
+                // Envía los datos al servidor
+                fetch('http://localhost:3000/api/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Contacto agregado:', data);
+                    //alert('¡Te has suscrito con éxito!');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Hubo un problema al suscribirte. Inténtalo de nuevo.');
+                });
+            });
         </script>
-        
     </main>
     <hr>
     <footer>

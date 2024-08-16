@@ -90,6 +90,7 @@ app.post("/create_preference", async (req, res) => {
 const perfitApiKey = process.env.PERFIT_API_KEY;
 
 app.post('/api/subscribe', async (req, res) => {
+  console.log('Solicitud recibida en /api/subscribe');
     try {
         // Enviar datos al API de Perfit
         const response = await fetch('https://api.myperfit.com/v2/instagram5o/contacts', {

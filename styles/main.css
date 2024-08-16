@@ -78,10 +78,11 @@ main .order-summary .boton-confirmar, main .items .item .boton-ficha, main .item
   transition: all 0.2s linear;
 }
 
-main #nombre, main #correo,
-main #passwrd, main #mensaje,
-main #telefono, main #direccion,
-main #calle, main #num_ext, main #cp,
+main #nombre, main #apellido,
+main #correo, main #passwrd,
+main #mensaje, main #telefono,
+main #direccion, main #calle,
+main #num_ext, main #cp,
 main #num_int, main #colonia,
 main #city, main #state, main #pais,
 main #referencia {

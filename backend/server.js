@@ -88,6 +88,7 @@ app.post("/create_preference", async (req, res) => {
 
 // Fetch hacia Perfit
 const perfitApiKey = process.env.PERFIT_API_KEY;
+console.log(perfitApiKey);
 
 app.post('/api/subscribe', async (req, res) => {
     try {

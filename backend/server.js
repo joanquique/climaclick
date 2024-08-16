@@ -43,6 +43,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
+// Fetch hacia Mercado Pago
 app.post("/create_preference", async (req, res) => {
     try {
         const body = {
@@ -84,6 +85,36 @@ app.post("/create_preference", async (req, res) => {
 
     }
 })
+
+// Fetch hacia Perfit
+const perfitApiKey = process.env.PERFIT_API_KEY;
+
+app.post('/api/subscribe', async (req, res) => {
+    try {
+        // Enviar datos al API de Perfit
+        const response = await fetch('https://api.myperfit.com/v2/instagram5o/contacts', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${perfitApiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(req.body)
+        });
+
+        // Procesar la respuesta de Perfit
+        const data = await response.json();
+
+        if (response.ok) {
+            res.status(200).json(data); // Responder al cliente con los datos de Perfit
+            
+        } else {
+            res.status(response.status).json(data); // Responder con el error
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Error al suscribirse' });
+    }
+});
 
 // Iniciar el servidor
 app.listen(port, () => {

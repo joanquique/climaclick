@@ -78,11 +78,10 @@ main .order-summary .boton-confirmar, main .items .item .boton-ficha, main .item
   transition: all 0.2s linear;
 }
 
-main #nombre, main #apellido,
-main #correo, main #passwrd,
-main #mensaje, main #telefono,
-main #direccion, main #calle,
-main #num_ext, main #cp,
+main #nombre, main #correo,
+main #passwrd, main #mensaje,
+main #telefono, main #direccion,
+main #calle, main #num_ext, main #cp,
 main #num_int, main #colonia,
 main #city, main #state, main #pais,
 main #referencia {
@@ -711,12 +710,6 @@ body {
   padding: 7rem 0;
 }
 
-@media screen and (max-width: 768px) {
-  .banner {
-    background: url("../img/BANNER-CEL.webp") center/cover;
-    height: auto;
-  }
-}
 .banner-marcas {
   background: url("../img/BANNER-ACTUALIZADO.webp") center/cover;
   height: auto;
@@ -765,6 +758,14 @@ body {
 }
 .banner-hogar {
   background: url("../img/CABECERA-HOGAR.webp") center/cover;
+  height: 6rem;
+  padding: 5.5rem 0;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.banner {
+  background: url("../img/BANNER-PRINCIPAL-MOVIL.webp") center/cover;
   height: 6rem;
   padding: 5.5rem 0;
   width: 100%;

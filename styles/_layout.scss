@@ -12,12 +12,12 @@ body {
     padding: 7rem 0;
 }
 
-@media screen and (max-width: 768px){
-    .banner {
-        background: url('../img/BANNER-CEL.webp') center/cover;
-        height: auto;
-    }
-}
+// @media screen and (max-width: 768px){
+//     .banner {
+//         background: url('../img/BANNER-CEL.webp') center/cover;
+//         height: auto;
+//     }
+// }
 
 .banner-marcas {
     background: url('../img/BANNER-ACTUALIZADO.webp') center/cover;
@@ -71,6 +71,10 @@ body {
 // Banners Generales
 .banner-hogar {
     @include banner-general ('../img/CABECERA-HOGAR.webp');
+}
+
+.banner{
+    @include banner-general ('../img/BANNER-PRINCIPAL-MOVIL.webp');
 }
 
 .banner-negocio {
@@ -324,11 +328,10 @@ main {
         font-weight: bold;
     }
 
-    #nombre, #apellido,
-    #correo, #passwrd,
-    #mensaje, #telefono,
-    #direccion, #calle,
-    #num_ext, #cp,
+    #nombre, #correo,
+    #passwrd, #mensaje,
+    #telefono, #direccion,
+    #calle, #num_ext, #cp,
     #num_int, #colonia,
     #city, #state, #pais,
     #referencia {

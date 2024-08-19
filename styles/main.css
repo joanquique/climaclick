@@ -506,11 +506,12 @@ small {
     font-weight: 500;
     font-size: 20px;
     list-style-type: none;
+    background-color: #fff;
   }
   .menu .menu-item a {
     padding: 0 28px;
     text-decoration: none;
-    color: #333;
+    color: #000;
     display: block;
     transform: scale(1.2);
     width: 100%;

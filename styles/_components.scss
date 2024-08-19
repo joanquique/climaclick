@@ -344,17 +344,19 @@ small { // Pie de pagina de modal copyright
             font-weight: 500;
             font-size: 20px;
             list-style-type: none;
+            background-color: #fff; // Color de fondo claro para mejorar contraste con el texto
             
             a {
                 padding: 0 28px;
                 text-decoration: none;
-                color: #333;
+                color: #000; // Color de texto oscuro para buen contraste con el fondo
                 display: block;
                 transform: scale(1.2);
-                width: 100%; // Hace que el enlace ocupe todo el espacio del li
-                height: 100%; // Opcional: Hace que el enlace ocupe toda la altura del li
+                width: 100%;
+                height: 100%;
             }
         }
+        
           
     }
     

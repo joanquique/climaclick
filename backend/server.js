@@ -66,8 +66,8 @@ app.post("/create_preference", async (req, res) => {
             ],
             back_urls: {
                 success: "http://89.116.212.196:3000/resumen_compra.html",
-                failure: "http://89.116.212.196:3000/resumen_compra.html",
-                pending: "http://89.116.212.196:3000/resumen_compra.html",
+                failure: "http://89.116.212.196:3000/index.html",
+                pending: "http://89.116.212.196:3000/index.html",
             },
             auto_return: "approved",
         };

@@ -335,21 +335,27 @@ small { // Pie de pagina de modal copyright
         p {
             margin: 0;
         }
-        a {
-            text-decoration: none;
-            color: #333;
-            transform: scale(1.2);
-            .menu-item {
-                border-bottom: 1px solid #333;
-                display: flex;
-                justify-content: left;
-                padding: 20px 0 20px 20px;
-                box-sizing: border-box;
+        .menu-item {
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: left;
+            padding: 20px 0 20px 20px;
+            box-sizing: border-box;
+            font-weight: 500;
+            font-size: 20px;
+            list-style-type: none;
+            
+            a {
+                padding: 0 28px;
                 text-decoration: none;
-                font-weight: 500;
-                font-size: 20px;
+                color: #333;
+                display: block;
+                transform: scale(1.2);
+                width: 100%; // Hace que el enlace ocupe todo el espacio del li
+                height: 100%; // Opcional: Hace que el enlace ocupe toda la altura del li
             }
         }
+          
     }
     
     .menu__close-icon {

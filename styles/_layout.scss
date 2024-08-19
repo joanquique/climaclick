@@ -12,13 +12,6 @@ body {
     padding: 7rem 0;
 }
 
-// @media screen and (max-width: 768px){
-//     .banner {
-//         background: url('../img/BANNER-CEL.webp') center/cover;
-//         height: auto;
-//     }
-// }
-
 .banner-marcas {
     background: url('../img/BANNER-ACTUALIZADO.webp') center/cover;
     height: auto;
@@ -71,10 +64,6 @@ body {
 // Banners Generales
 .banner-hogar {
     @include banner-general ('../img/CABECERA-HOGAR.webp');
-}
-
-.banner{
-    @include banner-general ('../img/BANNER-PRINCIPAL-MOVIL.webp');
 }
 
 .banner-negocio {
@@ -130,6 +119,13 @@ body {
     }
     .banner-vrf {
         @include banner-general-movil('../img/CABECERAS-VRFMOVIL.webp');
+    }
+}
+
+// Banner principal móvil
+@media screen and (max-width: 768px) {
+    .banner{
+        @include banner-general ('../img/BANNER-PRINCIPAL-MOVIL.webp');
     }
 }
 

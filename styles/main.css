@@ -765,14 +765,6 @@ body {
   margin: 15px 0;
 }
 
-.banner {
-  background: url("../img/BANNER-PRINCIPAL-MOVIL.webp") center/cover;
-  height: 6rem;
-  padding: 5.5rem 0;
-  width: 100%;
-  margin: 15px 0;
-}
-
 .banner-negocio {
   background: url("../img/CABECERA-NEGOCIO.webp") center/cover;
   height: 6rem;
@@ -861,6 +853,15 @@ body {
   .banner-vrf {
     background: url("../img/CABECERAS-VRFMOVIL.webp") center/cover;
     height: 3.6rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .banner {
+    background: url("../img/BANNER-PRINCIPAL-MOVIL.webp") center/cover;
+    height: 6rem;
+    padding: 5.5rem 0;
+    width: 100%;
+    margin: 15px 0;
   }
 }
 header {

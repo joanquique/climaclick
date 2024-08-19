@@ -510,7 +510,7 @@ small {
   .menu .menu-item a {
     padding: 0 28px;
     text-decoration: none;
-    color: #000;
+    color: #333;
     display: block;
     transform: scale(1.2);
     width: 100%;

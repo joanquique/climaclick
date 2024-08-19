@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
+// import nodemailer from 'nodemailer';
 
 dotenv.config();
 
@@ -90,9 +91,21 @@ app.post("/create_preference", async (req, res) => {
 const perfitApiKey = process.env.PERFIT_API_KEY;
 console.log(perfitApiKey);
 
+// Configurar el transporte de correo
+// const transporter = nodemailer.createTransport({
+//     service: 'gmail', 
+//     auth: {
+//         user: 'correo@gmail.com', 
+//         pass: 'contraseña' 
+//     },
+//     tls: {
+//         rejectUnauthorized: false
+//     }
+// });
+
 app.post('/api/subscribe', async (req, res) => {
-  console.log('Solicitud recibida en /api/subscribe');
     try {
+        // const { email, name, phone } = req.body;
         // Enviar datos al API de Perfit
         const response = await fetch('https://api.myperfit.com/v2/instagram5o/contacts', {
             method: 'POST',
@@ -105,6 +118,28 @@ app.post('/api/subscribe', async (req, res) => {
 
         // Procesar la respuesta de Perfit
         const data = await response.json();
+
+        // // Configurar el contenido del correo para el vendedor
+        // const mailOptionsToSeller = {
+        //     from: 'correo@gmail.com',
+        //     to: 'correo@gmail.com', // Reemplaza con tu correo de ventas
+        //     subject: 'Resumen de Compra - Venta',
+        //     text: `Nuevo resumen de compra:\n\nEmail: ${email}\nNombre: ${name}\nTeléfono: ${phone}`
+        // };
+
+        // // Configurar el contenido del correo para el comprador
+        // const mailOptionsToBuyer = {
+        //     from: 'correo@gmail.com',
+        //     to: email, // El correo del comprador
+        //     subject: 'Confirmación de Compra',
+        //     text: `Gracias por tu compra, ${name}!\n\nTu resumen de compra es:\n\nNombre: ${name}\nTeléfono: ${phone}`
+        // };
+
+        // // Enviar correos
+        // await Promise.all([
+        //     transporter.sendMail(mailOptionsToSeller),
+        //     transporter.sendMail(mailOptionsToBuyer)
+        // ]);
 
         if (response.ok) {
             res.status(200).json(data); // Responder al cliente con los datos de Perfit

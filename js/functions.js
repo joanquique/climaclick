@@ -457,6 +457,19 @@ document.addEventListener('DOMContentLoaded', function() {
         slideshowContainer.addEventListener('touchstart', handleTouchStart, false);
         slideshowContainer.addEventListener('touchmove', handleTouchMove, false);
     }
+    const inputs = document.querySelectorAll('#paymentForm input');
+
+    // Añade un evento 'input' a cada campo
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            // Si el campo tiene valor, añade la clase 'input-filled'
+            if (this.value.trim() !== '') {
+                this.classList.add('input-filled');
+            } else {
+                this.classList.remove('input-filled');
+            }
+        });
+    });
 });
 
 

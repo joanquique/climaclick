@@ -636,7 +636,12 @@ img {
   background-color: #717171;
 }
 
-/* Fading animation */
+/* Estilo para campos con borde verde */
+.input-filled {
+  border: 2px solid green !important;
+  box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
 @keyframes slideInFromLeft {
   from {
     transform: translateX(-100%);

@@ -89,7 +89,6 @@ app.post("/create_preference", async (req, res) => {
 
 // Fetch hacia Perfit
 const perfitApiKey = process.env.PERFIT_API_KEY;
-console.log(perfitApiKey);
 
 // Configurar el transporte de correo
 // const transporter = nodemailer.createTransport({
@@ -151,6 +150,53 @@ app.post('/api/subscribe', async (req, res) => {
         console.error('Error:', error);
         res.status(500).json({ error: 'Error al suscribirse' });
     }
+});
+
+// Fetch hacia Skydropx
+const skydropxApiKey = process.env.SKYDROPX_API_KEY;
+
+app.post('/api/shipping/rates', async (req, res) => {
+  const { nombre, apellido, correo, telefono, address } = req.body;
+  try {
+      const response = await fetch('https://api.skydropx.com/v1/rates', {
+          method: 'POST',
+          headers: {
+              'Authorization': `Bearer ${skydropxApiKey}`,
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              origin: { 
+                  address: 'Schumann',
+                  number: 202,
+                  postal_code: '07870',
+                  neighborhood: 'Vallejo',
+                  city: 'Gustavo A. Madero',
+                  state: 'CDMX',
+              }, 
+              destination: {
+                  address: address.calle,
+                  number: address.num_ext,
+                  complement: address.num_int,
+                  postal_code: address.cp,
+                  neighborhood: address.colonia,
+                  city: address.city,
+                  state: address.state,
+                  reference: address.referencia
+              },
+          })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+          res.status(200).json(data);
+      } else {
+          res.status(response.status).json(data);
+      }
+  } catch (error) {
+      console.error('Error fetching shipping rates:', error);
+      res.status(500).json({ error: 'Error fetching shipping rates' });
+  }
 });
 
 // Iniciar el servidor

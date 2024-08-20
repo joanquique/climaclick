@@ -215,7 +215,7 @@
                     email: document.getElementById('correo').value,
                     firstName: document.getElementById('nombre').value,
                     lastName: document.getElementById('apellido').value,
-                    phone: document.getElementById('telefono').value
+                    //phone: document.getElementById('telefono').value
                 };
 
                 // Envía los datos al servidor
@@ -235,6 +235,47 @@
                     alert('Hubo un problema al suscribirte. Inténtalo de nuevo.');
                 });
             });
+
+            // Para Skydropx
+        //     document.getElementById('paymentForm').addEventListener('submit', async (event) => {
+        //     event.preventDefault(); // Evita el comportamiento por defecto del formulario
+
+        //     const data = {
+        //         nombre: document.getElementById('nombre').value,
+        //         apellido: document.getElementById('apellido').value,
+        //         correo: document.getElementById('correo').value,
+        //         telefono: document.getElementById('telefono').value,
+        //         address: {
+        //             calle: document.getElementById('calle').value,
+        //             num_ext: document.getElementById('num_ext').value,
+        //             num_int: document.getElementById('num_int').value,
+        //             cp: document.getElementById('cp').value,
+        //             colonia: document.getElementById('colonia').value,
+        //             city: document.getElementById('city').value,
+        //             state: document.getElementById('state').value,
+        //             referencia: document.getElementById('referencia').value
+        //         }
+        //     };
+
+        //     try {
+        //         const response = await fetch('/api/shipping/rates', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify(data)
+        //         });
+
+        //         const result = await response.json();
+        //         if (response.ok) {
+        //             console.log('Rates:', result);
+        //         } else {
+        //             console.error('Error:', result);
+        //         }
+        //     } catch (error) {
+        //         console.error('Error:', error);
+        //     }
+        // });
         </script>
     </main>
     <hr>

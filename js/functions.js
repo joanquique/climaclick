@@ -324,7 +324,7 @@ function verificarCarrito() {
 
 // Función para verificar si es dispositivo móvil
 function esDispositivoMovil() {
-    return window.innerWidth <= 795; // Cambia este valor según tus necesidades
+    return window.innerWidth <= 1060; // Cambia este valor según tus necesidades
 }
 
 // Cambiar contenido visible en función del dispositivo

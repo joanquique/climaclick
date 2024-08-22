@@ -1167,7 +1167,7 @@ main .item-design .right-side span.text-montserrat {
 main .item-design .right-side ul {
   margin-bottom: 30px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1060px) {
   main .item-design p {
     line-height: 1.6;
     font-size: 16px;

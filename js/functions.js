@@ -472,28 +472,43 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-// Generar orden de compra
-function generateOrderNumber() {
-    return 'ORD-' + Date.now(); // Usa el timestamp para crear un número único
+// Función para obtener parámetros de la URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
 }
 
-const orderNumber = generateOrderNumber();
+// Generar o recuperar el número de orden
+function getOrderNumber() {
+    let orderNumber = localStorage.getItem('orderNumber');
+    if (!orderNumber) {
+        orderNumber = 'ORD-' + Date.now(); // Usa el timestamp para crear un número único
+        localStorage.setItem('orderNumber', orderNumber);
+    }
+    return orderNumber;
+}
 
+// Función para cargar el resumen del carrito
 function loadCartForSummary() {
-    // Declara e inicializa las variables al inicio
     const itemsSummaryContainer = document.getElementById('items-summary-container');
     const summaryTotalElement = document.getElementById('summary-total');
 
-    // Verifica si el contenedor de resumen de artículos existe
     if (!itemsSummaryContainer || !summaryTotalElement) {
-        return; // Sale de la función si el contenedor no existe
+        return;
     }
 
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    itemsSummaryContainer.innerHTML = `<p class="odc">Orden de compra: <b>${generateOrderNumber()}</b></p>`;
-
     let total = 0;
+
+    // Verifica si hay artículos en el carrito
+    if (cartItems.length === 0) {
+        itemsSummaryContainer.innerHTML = '<p>No hay artículos en el carrito.</p>';
+        summaryTotalElement.textContent = '';
+        return;
+    }
+
+    const orderNumber = getOrderNumber();
+    itemsSummaryContainer.innerHTML = `<p class="odc">Orden de compra: <b>${orderNumber}</b></p>`;
 
     cartItems.forEach(item => {
         const itemElement = document.createElement('div');
@@ -522,19 +537,33 @@ function loadCartForSummary() {
     }).format(total);
 
     summaryTotalElement.textContent = formattedTotal;
+
+    // Guardar el resumen de compra en localStorage
+    const purchaseSummary = {
+        orderNumber,
+        cartItems,
+        total: formattedTotal
+    };
+    localStorage.setItem('purchaseSummary', JSON.stringify(purchaseSummary));
 }
 
-window.addEventListener('beforeunload', function(event) {
-    // Verifica si la página es la de resumen de compra
+// Función principal que verifica el payment_id y carga el resumen
+function initializePage() {
     if (window.location.pathname.includes('resumen_compra.html')) {
-        localStorage.removeItem('cart');
-        event.preventDefault(); // Prevenir la acción por defecto
-        return '¿Seguro que quieres salir de la página? El carrito se vaciará.';
-    }
-});
+        const paymentId = getQueryParam('payment_id');
 
-// Llama a la función para cargar el resumen de la compra cuando se cargue la página
-document.addEventListener('DOMContentLoaded', loadCartForSummary);
+        if (paymentId) {
+            loadCartForSummary();
+        } else {
+            // Redirigir al índice si payment_id no está presente
+            window.location.href = 'index.html';
+        }
+    }
+}
+
+// Llamar a la función principal cuando la página se carga
+document.addEventListener('DOMContentLoaded', initializePage);
+
 
 // Script de efecto de lupa en artículo individual
 document.addEventListener('DOMContentLoaded', () => {

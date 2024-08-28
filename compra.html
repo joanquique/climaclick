@@ -64,7 +64,7 @@
                     <input type="text" id="nombre" name="nombre" required>
                 </div>
                 <div class="form-group">
-                    <label for="nombre">Apellido(s)<span class="asterisco">*</span> :</label>
+                    <label for="apellido">Apellido(s)<span class="asterisco">*</span> :</label>
                     <input type="text" id="apellido" name="apellido" required>
                 </div>
                 <div class="form-group">
@@ -141,72 +141,71 @@
             </ul>
         </section>
         <script>
-            // Mercado Pago
             async function initializeMP() {
                 try {
                     // Obtener la clave pública del servidor
                     const response = await fetch("http://localhost:3000/get_public_key");
                     const data = await response.json();
                     const publicKey = data.publicKey;
-        
+
                     // Inicializar MercadoPago con la clave pública obtenida
                     const mp = new MercadoPago(publicKey, {
                         locale: "es-MX",
                     });
+                    
                     const bricksBuilder = mp.bricks();
-        
                     document.getElementById('pay-button').addEventListener('click', async () => {
-                        
-                        const quantity = document.querySelector("span.cart__item-count").innerText;
-                        const name = document.querySelector("div.cart__item").innerText;
-                        const total = document.querySelector("span.cart__total").innerText;
-                        const formattedTotal = parseFloat(total.replace(/,/g, '').replace('.', ''));
-                        const result = (formattedTotal / 100).toFixed(2);
-        
-                        try {
-                            const orderData = {
-                                title: name,
-                                quantity: quantity,
-                                price: result / quantity,
-                            };
-                        
-                            const response = await fetch("http://localhost:3000/create_preference", {
-                                method: "POST",
-                                headers: {
-                                    "Content-Type": "application/json",
-                                },
-                                body: JSON.stringify(orderData),
-                            });
-                        
-                            const preference = await response.json()
-                            createCheckoutButton(preference.id);
-                        
-                        } catch (error) {
-                            alert("error: :(");
+                        // Verifica si el botón "Proceder al Pago" está oculto
+                        const payButton = document.getElementById('pay-button');
+                        if (payButton.classList.contains('hidden')) {
+                            const quantity = document.querySelector("span.cart__item-count").innerText;
+                            const name = document.querySelector("div.cart__item").innerText;
+                            const total = document.querySelector("span.cart__total").innerText;
+                            const formattedTotal = parseFloat(total.replace(/,/g, '').replace('.', ''));
+                            const result = (formattedTotal / 100).toFixed(2);
+
+                            try {
+                                const orderData = {
+                                    title: name,
+                                    quantity: quantity,
+                                    price: result / quantity,
+                                };
+
+                                const response = await fetch("http://localhost:3000/create_preference", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify(orderData),
+                                });
+
+                                const preference = await response.json();
+                                createCheckoutButton(preference.id);
+                            } catch (error) {
+                                alert("Error al crear la preferencia: :(");
+                            }
                         }
                     });
-        
+
                     const createCheckoutButton = (preferenceId) => {
-                        const bricksBuilder = mp.bricks();
-        
                         const renderComponent = async () => {
-                            if(window.checkoutButton) window.checkoutButton.unmount();
+                            if (window.checkoutButton) window.checkoutButton.unmount();
                             await bricksBuilder.create("wallet", "wallet_container", {
                                 initialization: {
                                     preferenceId: preferenceId,
                                 },
                             });
-                        }
+                        };
                         renderComponent();
                     };
-        
                 } catch (error) {
                     console.error("Error al obtener la clave pública:", error);
                 }
             }
-        
+
             // Llamar a la función para inicializar MercadoPago
             initializeMP();
+
 
             // Perfit
             document.getElementById('pay-button').addEventListener('click', function() {

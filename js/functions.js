@@ -91,44 +91,45 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartTotal(); // Actualiza el total a pagar al cargar la página
     verificarCarrito();
 
-    //Verificar que no exista el botón de Proceder al pago en el DOM
+    // Verificar que no exista el botón de Proceder al pago en el DOM
     const payButton = document.getElementById('pay-button');
-  
+
     // Verifica si el botón de pago está presente en el DOM
     if (payButton) {
-      payButton.addEventListener('click', function() {
-        const requiredFields = [
-          'nombre', 'correo', 'telefono', 'calle', 'num_ext', 'cp',
-          'colonia', 'city', 'state', 'pais', 'referencia', 'termsCheckbox'
-        ];
-  
-        let allFieldsFilled = true;
-  
-        requiredFields.forEach(fieldId => {
-          const field = document.getElementById(fieldId);
-  
-          // Solo procede si el campo existe
-          if (field) {
-            if (!field.value || (field.type === 'checkbox' && !field.checked)) {
-              allFieldsFilled = false;
-              field.classList.add('invalid');
+        payButton.addEventListener('click', function() {
+            const requiredFields = [
+                'nombre', 'apellido', 'correo', 'telefono', 'calle', 'num_ext', 'cp',
+                'colonia', 'city', 'state', 'pais', 'referencia', 'termsCheckbox'
+            ];
+            let allFieldsFilled = true;
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                // Solo procede si el campo existe
+                if (field) {
+                    if (!field.value || (field.type === 'checkbox' && !field.checked)) {
+                        allFieldsFilled = false;
+                        field.classList.add('invalid');
+                    } else {
+                        field.classList.remove('invalid');
+                    }
+                }
+            });
+
+            if (allFieldsFilled) {
+                // Oculta el botón "Proceder al Pago"
+                payButton.classList.add('hidden');
+                
+                // Muestra el contenedor del botón de MP si todos los campos están llenos
+                const walletContainer = document.getElementById('wallet_container');
+                if (walletContainer) {
+                    walletContainer.style.display = 'block';
+                }
             } else {
-              field.classList.remove('invalid');
+                alert('Por favor completa todos los campos antes de proceder.');
             }
-          }
         });
-  
-        if (allFieldsFilled) {
-          payButton.classList.add('hidden');
-          const walletContainer = document.getElementById('wallet_container');
-          if (walletContainer) {
-            walletContainer.style.display = 'block';
-          }
-        } else {
-          alert('Por favor completa todos los campos antes de proceder.');
-        }
-      });
     }
+
     // Selecciona todos los botones con la clase 'add-to-cart'
     const botones = document.querySelectorAll('.add-to-cart');
     

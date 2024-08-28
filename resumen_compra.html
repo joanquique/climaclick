@@ -135,5 +135,15 @@
         </div>
         <p class="copyright">&copy; 2024 Climaclick</p>
     </footer>
+    <script>
+        // Función para borrar sessionStorage al abandonar la página de resumen_compra.html
+        function clearSessionOnUnload() {
+            if (window.location.pathname.includes('resumen_compra.html')) {
+                sessionStorage.clear();
+            }
+        }
+        // Agregar un listener para el evento unload
+        window.addEventListener('unload', clearSessionOnUnload);
+    </script>
 </body>
 </html>

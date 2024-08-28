@@ -478,29 +478,39 @@ function getQueryParam(param) {
     return urlParams.get(param);
 }
 
-// Generar o recuperar el número de orden
+// Función para generar o recuperar el número de orden desde sessionStorage
 function getOrderNumber() {
-    let orderNumber = localStorage.getItem('orderNumber');
+    let orderNumber = sessionStorage.getItem('orderNumber');
     if (!orderNumber) {
         orderNumber = 'ORD-' + Date.now(); // Usa el timestamp para crear un número único
-        localStorage.setItem('orderNumber', orderNumber);
+        sessionStorage.setItem('orderNumber', orderNumber);
     }
     return orderNumber;
 }
 
-// Función para cargar el resumen del carrito
+// Función para cargar el resumen del carrito o desde sessionStorage
 function loadCartForSummary() {
     const itemsSummaryContainer = document.getElementById('items-summary-container');
     const summaryTotalElement = document.getElementById('summary-total');
-
+    
     if (!itemsSummaryContainer || !summaryTotalElement) {
         return;
     }
+    
+    // Primero, verifica si ya hay un resumen guardado en sessionStorage
+    let purchaseSummary = sessionStorage.getItem('purchaseSummary');
+    
+    if (purchaseSummary) {
+        // Cargar el resumen desde sessionStorage
+        purchaseSummary = JSON.parse(purchaseSummary);
+        displayPurchaseSummary(purchaseSummary);
+        return;
+    }
 
+    // Si no hay resumen previo, generamos uno nuevo desde el carrito
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     let total = 0;
 
-    // Verifica si hay artículos en el carrito
     if (cartItems.length === 0) {
         itemsSummaryContainer.innerHTML = '<p>No hay artículos en el carrito.</p>';
         summaryTotalElement.textContent = '';
@@ -509,10 +519,9 @@ function loadCartForSummary() {
 
     const orderNumber = getOrderNumber();
     itemsSummaryContainer.innerHTML = `<p class="odc">Orden de compra: <b>${orderNumber}</b></p>`;
-
+    
     cartItems.forEach(item => {
         const itemElement = document.createElement('div');
-
         itemElement.innerHTML = `
             <div class="item-summary">
                 <img class="img-summary" src="${item.imgSrc}" alt="${item.name}">
@@ -524,9 +533,7 @@ function loadCartForSummary() {
             </div>
             <hr>
         `;
-
         itemsSummaryContainer.appendChild(itemElement);
-
         const priceNumber = parseFloat(item.price.replace(/[^0-9.-]+/g, ""));
         total += priceNumber * item.quantity;
     });
@@ -535,16 +542,44 @@ function loadCartForSummary() {
         style: 'currency',
         currency: 'MXN'
     }).format(total);
-
     summaryTotalElement.textContent = formattedTotal;
 
-    // Guardar el resumen de compra en localStorage
-    const purchaseSummary = {
+    // Guardar el resumen de compra en sessionStorage
+    purchaseSummary = {
         orderNumber,
         cartItems,
         total: formattedTotal
     };
-    localStorage.setItem('purchaseSummary', JSON.stringify(purchaseSummary));
+    sessionStorage.setItem('purchaseSummary', JSON.stringify(purchaseSummary));
+    
+    // Vaciar el carrito después de generar el resumen
+    localStorage.removeItem('cart');
+}
+
+// Función para mostrar el resumen de compra desde sessionStorage
+function displayPurchaseSummary(purchaseSummary) {
+    const itemsSummaryContainer = document.getElementById('items-summary-container');
+    const summaryTotalElement = document.getElementById('summary-total');
+    
+    itemsSummaryContainer.innerHTML = `<p class="odc">Orden de compra: <b>${purchaseSummary.orderNumber}</b></p>`;
+    
+    purchaseSummary.cartItems.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.innerHTML = `
+            <div class="item-summary">
+                <img class="img-summary" src="${item.imgSrc}" alt="${item.name}">
+                <div class="item-details">
+                    <h3 class="item-name">${item.name}</h3>
+                    <p class="item-quantity">Cantidad: ${item.quantity}</p>
+                    <p class="item-price">Precio: ${item.price}*</p>
+                </div>
+            </div>
+            <hr>
+        `;
+        itemsSummaryContainer.appendChild(itemElement);
+    });
+
+    summaryTotalElement.textContent = purchaseSummary.total;
 }
 
 // Función principal que verifica el payment_id y carga el resumen
@@ -564,6 +599,17 @@ function initializePage() {
 // Llamar a la función principal cuando la página se carga
 document.addEventListener('DOMContentLoaded', initializePage);
 
+// Función para vaciar el carrito al cargar la página de resumen de compra
+function clearCartOnSummaryPageLoad() {
+    if (window.location.pathname.includes('resumen_compra.html')) {
+        localStorage.removeItem('cart'); // Vacía el carrito
+    }
+}
+
+// Llamar a esta función cuando la página de resumen de compra se carga
+document.addEventListener('DOMContentLoaded', function() {
+    clearCartOnSummaryPageLoad();
+});
 
 // Script de efecto de lupa en artículo individual
 document.addEventListener('DOMContentLoaded', () => {

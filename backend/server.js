@@ -8,16 +8,16 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-let publicKey;
-let privateKey;
+// let publicKey = process.env.PROD_PUBLIC_KEY;
+let privateKey = process.env.PROD_PRIVATE_KEY;
 
-if (process.env.MODE === 'production') {
-  publicKey = process.env.PROD_PUBLIC_KEY;
-  privateKey = process.env.PROD_PRIVATE_KEY;
-} else if (process.env.MODE === 'test') {
-  publicKey = process.env.TEST_PUBLIC_KEY;
-  privateKey = process.env.TEST_PRIVATE_KEY;
-}
+// if (process.env.MODE === 'production') {
+//   publicKey = process.env.PROD_PUBLIC_KEY;
+//   privateKey = process.env.PROD_PRIVATE_KEY;
+// } else if (process.env.MODE === 'test') {
+//   publicKey = process.env.TEST_PUBLIC_KEY;
+//   privateKey = process.env.TEST_PRIVATE_KEY;
+// }
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from 'mercadopago';
@@ -206,6 +206,7 @@ app.listen(port, () => {
 
 // Enviar public_key al cliente
 app.get('/get_public_key', (req, res) => {
-  const publicKey = process.env.MODE === 'production' ? process.env.PROD_PUBLIC_KEY : process.env.TEST_PUBLIC_KEY;
+//   const publicKey = process.env.MODE === 'production' ? process.env.PROD_PUBLIC_KEY : process.env.TEST_PUBLIC_KEY;
+  const publicKey = process.env.PROD_PUBLIC_KEY;
   res.json({ publicKey });
 });

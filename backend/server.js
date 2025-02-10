@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// let publicKey = process.env.PROD_PUBLIC_KEY;
+let publicKey = process.env.PROD_PUBLIC_KEY;
 let privateKey = process.env.PROD_PRIVATE_KEY;
 
 if (process.env.MODE === 'production') {
